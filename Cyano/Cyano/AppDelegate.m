@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "IQKeyboardManager.h"
 @interface AppDelegate ()
 
 @end
@@ -20,6 +20,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor colorWithRed:209 / 255.0f green:203 / 255.0f blue:198 / 255.0f alpha:1.0f];
     [self.window makeKeyAndVisible];
+    
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     
     // 白字状态栏
     [GCHApplication setStatusBarWithLightColor:YES];

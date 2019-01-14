@@ -73,7 +73,7 @@
     model.keystore = account.keystore;
     model.password = password;
     model.address = account.address.address;
-    
+    [GCHRAM instance].defaultAccount.password = password;
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:model] forKey:kAccount];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -83,6 +83,7 @@
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAccount];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [GCHRAM instance].defaultAccount.password = nil;
 }
 
 // 输入密码

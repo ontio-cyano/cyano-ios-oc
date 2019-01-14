@@ -25,15 +25,15 @@ typedef NS_ENUM(NSUInteger, ONTTokenType) {
  */
 @interface ONTAccount : NSObject
 
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *mnemonicText;
-@property (nonatomic, strong) NSString *encryptMnemonicText;
-@property (nonatomic, strong) NSString *privateKeyHex;
-@property (nonatomic, strong) NSString *wif;
-@property (nonatomic, strong) NSString *keystore;
-@property (nonatomic, strong) ONTPrivateKey *privateKey;
-@property (nonatomic, strong) ONTPublicKey *publicKey;
-@property (nonatomic, strong) ONTAddress *address;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *mnemonicText;
+@property (nonatomic, readonly) NSString *encryptMnemonicText;
+@property (nonatomic, readonly) NSString *privateKeyHex;
+@property (nonatomic, readonly) NSString *wif;
+@property (nonatomic, readonly) NSString *keystore;
+@property (nonatomic, readonly) ONTPrivateKey *privateKey;
+@property (nonatomic, readonly) ONTPublicKey *publicKey;
+@property (nonatomic, readonly) ONTAddress *address;
 
 /**
  随机创建一个钱包

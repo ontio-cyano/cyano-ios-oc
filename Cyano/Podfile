@@ -1,5 +1,5 @@
 # use_frameworks!
-# platform :ios, "8.0"
+ platform :ios, '8.0'
 
 target 'Cyano' do
     pod 'AFNetworking' 
@@ -10,4 +10,6 @@ target 'Cyano' do
     pod 'AFJSONRPCClient'
     pod 'MJExtension'
     pod 'MTDates'
+    pod 'Masonry', '~> 1.1.0'
+    pod 'IQKeyboardManager' ,'~> 6.0.6'
 end

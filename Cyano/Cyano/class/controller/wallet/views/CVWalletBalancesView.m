@@ -7,12 +7,17 @@
 //
 
 #import "CVWalletBalancesView.h"
-
+#import "ReceiveViewController.h"
+#import "SendViewController.h"
+#import "CTWebViewController.h"
+#import "MDOep4Model.h"
+#import "TokensCell.h"
+#import "OEP4ViewController.h"
 #define headerHeight getUIValue(200.0f)
 #define toolHeight getUIValue(60.0f)
 
 @interface CVWalletBalancesView ()
-
+<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) UIView *headerView;
 @property (strong, nonatomic) UILabel *ontValueLabel;
 @property (strong, nonatomic) UILabel *ongValueLabel;
@@ -22,6 +27,9 @@
 
 @property (strong, nonatomic) UIView *toolView;
 
+@property (strong, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) MDOep4Model *oep4Model;
 @end
 
 @implementation CVWalletBalancesView
@@ -37,8 +45,14 @@
     // Content
     [self layoutContentView];
     
+    // OEP-4
+    [self layoutOep4];
+    
     // Data
     [self updateData];
+    
+    // oep4 data
+    [self getOep4data];
 }
 
 #pragma mark - Data
@@ -67,6 +81,23 @@
     }];
 }
 
+#pragma mark - oep4 data
+
+- (void)getOep4data{
+    [[HTTPClient sharedClient]
+     sendAsynchronousURL:OEP4INFO
+     httpMethod:REQUEST_GET
+     parameters:nil
+     bodyBlock:nil
+     completionHandler:^(id data, BOOL success)
+     {
+         if (success)
+         {
+             self.oep4Model =  [[MDOep4Model alloc]initFromDictionary:data[@"Result"]];
+             [self layoutOep4];
+         }
+     }];
+}
 #pragma mark - Header
 
 - (void)layoutHeaderView
@@ -174,6 +205,24 @@
     titleLabel.textColor = RGBCOLOR(79, 77, 77);
 }
 
+#pragma mark - oep-4
+
+- (void)layoutOep4{
+    if (!self.tableView) {
+        self.tableView = [self createTable:self frame:CGRectZero target:self];
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self);
+            make.top.equalTo(self.contentView.mas_top).offset(getUIValue(70.0f));
+            make.bottom.equalTo(self.toolView.mas_top).offset(-10);
+        }];
+    }
+    for (UIView *view in self.tableView.subviews)
+    {
+        [view removeFromSuperview];
+    }
+    
+    [self.tableView reloadData];
+}
 #pragma mark - Tool
 
 - (void)layoutToolView
@@ -191,7 +240,7 @@
     }
     
     // Items
-    NSArray *itemsArr = @[@"SEND", @"RECEIVE"];
+    NSArray *itemsArr = @[@"SEND", @"RECEIVE",@"RECORD"];
     float itemWidth = getUIValue(100.0f);
     float itemHeight = getUIValue(40.0f);
     float itemWidthSpacing = getUIValue(4.0f);
@@ -226,13 +275,54 @@
     // SEND
     if (button.tag == 1)
     {
-        
+        SendViewController * controller = [[SendViewController alloc]init];
+        controller.isONT = YES;
+        controller.ontNum = self.ontValueLabel.text;
+        controller.ongNum = self.ongValueLabel.text;
+        [MainAppDelegate.navigationController pushViewController:controller animated:YES];
     }
     // RECEIVE
     else if (button.tag == 2)
     {
-        
+        ReceiveViewController * controller = [[ReceiveViewController alloc]init];
+        [MainAppDelegate.navigationController pushViewController:controller animated:YES];
+    }
+    // RECORD
+    else if (button.tag == 3){
+        ONTAccount *account = [GCHApplication requestDefaultAccount];
+        CTWebViewController * controller = [[CTWebViewController alloc]init];
+        controller.urlString = [NSString stringWithFormat:RECORDURI,account.address.address];
+        [MainAppDelegate.navigationController pushViewController:controller animated:YES];
     }
 }
 
+#pragma mark OEP4
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.oep4Model.ContractList.count;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * cellId = @"cellId";
+    TokensCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        cell = [[TokensCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell.selectionStyle =UITableViewCellSelectionStyleNone;
+        
+    }
+    MDOep4InfoModel * model = self.oep4Model.ContractList[indexPath.row];
+    [cell reloadCell:model];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MDOep4InfoModel * model = self.oep4Model.ContractList[indexPath.row];
+    OEP4ViewController * controller = [[OEP4ViewController alloc]init];
+    controller.model = model;
+    controller.isOEP4 = YES;
+    controller.ongNum = self.ongValueLabel.text;
+    controller.ontNum = self.ontValueLabel.text;
+    [MainAppDelegate.navigationController pushViewController:controller animated:YES];
+}
 @end

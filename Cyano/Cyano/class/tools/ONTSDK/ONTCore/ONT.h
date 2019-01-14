@@ -10,10 +10,13 @@
 #define ONT_h
 
 #define kONTMainNet NO  // MainNet or TestNet
-#define kONTRpcURL kONTMainNet?@"http://dappnode1.ont.io:20336":@"http://polaris1.ont.io:20336"
+//#define kONTRpcURL kONTMainNet?@"http://dappnode1.ont.io:20336":@"http://polaris1.ont.io:20336"
+#define kONTRpcURL kONTMainNet?@"http://dappnode1.ont.io:20336":@"http://polaris2.ont.io:20336"
 #define kONTRestfulURL kONTMainNet?@"http://dappnode1.ont.io:20334":@"http://polaris1.ont.io:20334"
 #define kONTDappServerNode kONTMainNet?@"http://dappnode3.ont.io:20336":@"http://polaris5.ont.io:20336"
 
+#define RECORDURI kONTMainNet?@"https://explorer.ont.io/address/%@/20/1":@"https://explorer.ont.io/address/%@/20/1/testnet"
+#define OEP4INFO kONTMainNet?@"https://explorer.ont.io/api/v1/explorer/oepcontract/oep4/20/1":@"https://polarisexplorer.ont.io/api/v1/explorer/oepcontract/oep4/20/1"
 //#define kONTRpcURL @"http://192.168.2.176:20336"
 //#define kONTRestfulURL @"http://192.168.2.176:20334"
 

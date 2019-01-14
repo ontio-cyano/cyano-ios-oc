@@ -7,7 +7,7 @@
 //  Web 控制器
 
 #import "CTWebViewController.h"
-#import "WebViewJavascriptBridge.h"
+//#import "WebViewJavascriptBridge.h"
 #import "RNJsWebView.h"
 
 @interface CTWebViewController () <UIWebViewDelegate>

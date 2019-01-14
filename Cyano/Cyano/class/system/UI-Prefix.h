@@ -137,4 +137,6 @@
 #define NumberFont(fontsize)[UIFont fontWithName:@"Noteworthy-Bold" size:fontsize]
 
 
-
+#define ONG_PRECISION_STR @"1000000000"
+#define NEP5_PRECISION_STR @"100000000"
+#define ONG_ZERO @"0.000000000"
