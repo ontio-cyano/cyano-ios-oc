@@ -124,6 +124,7 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"CLEAR" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         // 删除账号
         [GCHApplication clearDefaultAccount];
+        
         // New account
         MainAppDelegate.appViewController.whichTabSelect = 0;
     }]];

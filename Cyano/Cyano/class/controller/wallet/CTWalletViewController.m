@@ -34,10 +34,26 @@
 {
     [super viewDidDisappear:animated];
     
-    self.balancesView.hidden = YES;
-    self.accountView.hidden = YES;
+//    self.balancesView.hidden = YES;
+//    self.accountView.hidden = YES;
 }
-
+//-(void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    self.balancesView.hidden = YES;
+//    self.accountView.hidden = YES;
+//    // Balances
+//    if ([GCHRAM instance].defaultAccount.password)
+//    {
+//        self.balancesView.hidden = NO;
+//        [self.balancesView layoutMainView];
+//    }
+//    // Account
+//    else
+//    {
+//        self.accountView.hidden = NO;
+//        [self.accountView layoutMainView];
+//    }
+//}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];

@@ -14,7 +14,6 @@
 }
 @end
 @implementation ONTPrivateKey
-
 /**
  * @brief Initialization method
  */

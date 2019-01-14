@@ -318,8 +318,7 @@
     
     // 签名
     ECKeySignature *sign = [ecKey sign:transaction.getSignHash];
-    ONTSignature *signature = [[ONTSignature alloc] initWithPublicKey:ecKey.publicKeyAsData signature:sign.toDataNoV];
-    [transaction.signatures addObject:signature];
+    [transaction.signatures addObject:[[ONTSignature alloc] initWithPublicKey:ecKey.publicKeyAsData signature:sign.toDataNoV]];
     
     NSString *txHex = transaction.toRawByte.hexString;
     return txHex;
