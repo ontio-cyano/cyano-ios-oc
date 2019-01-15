@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1820472C21ED90920079F7F7 /* CTPaySureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1820472B21ED90920079F7F7 /* CTPaySureViewController.m */; };
 		1862E6C821E72B3F008B83BC /* neoutils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1862E60C21E72B3F008B83BC /* neoutils.framework */; };
 		1862E6C921E72B3F008B83BC /* ONTTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E60F21E72B3F008B83BC /* ONTTransaction.m */; };
 		1862E6CA21E72B3F008B83BC /* ONTSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E61021E72B3F008B83BC /* ONTSignature.m */; };
@@ -75,6 +76,8 @@
 		1862E70C21E732A4008B83BC /* ReceiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E70B21E732A4008B83BC /* ReceiveViewController.m */; };
 		1876C71B21EC283700DBE837 /* OEP4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876C71A21EC283700DBE837 /* OEP4ViewController.m */; };
 		1876C71E21EC332600DBE837 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876C71D21EC332600DBE837 /* Helper.m */; };
+		1876C72121EC76DE00DBE837 /* CTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876C72021EC76DE00DBE837 /* CTLoginViewController.m */; };
+		1876C72421EC8D2B00DBE837 /* CTPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876C72321EC8D2B00DBE837 /* CTPayViewController.m */; };
 		1880DFD821E8A1570084EDB8 /* MDOep4Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880DFD721E8A1570084EDB8 /* MDOep4Model.m */; };
 		1880DFDB21E8A1710084EDB8 /* MDOep4InfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880DFDA21E8A1710084EDB8 /* MDOep4InfoModel.m */; };
 		1880DFDE21E8A5860084EDB8 /* TokensCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880DFDC21E8A5860084EDB8 /* TokensCell.m */; };
@@ -243,6 +246,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1820472A21ED90920079F7F7 /* CTPaySureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTPaySureViewController.h; sourceTree = "<group>"; };
+		1820472B21ED90920079F7F7 /* CTPaySureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTPaySureViewController.m; sourceTree = "<group>"; };
 		1862E60C21E72B3F008B83BC /* neoutils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = neoutils.framework; sourceTree = "<group>"; };
 		1862E60E21E72B3F008B83BC /* ONTAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTAttribute.h; sourceTree = "<group>"; };
 		1862E60F21E72B3F008B83BC /* ONTTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTTransaction.m; sourceTree = "<group>"; };
@@ -420,6 +425,10 @@
 		1876C71A21EC283700DBE837 /* OEP4ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OEP4ViewController.m; sourceTree = "<group>"; };
 		1876C71C21EC332600DBE837 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		1876C71D21EC332600DBE837 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		1876C71F21EC76DE00DBE837 /* CTLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTLoginViewController.h; sourceTree = "<group>"; };
+		1876C72021EC76DE00DBE837 /* CTLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTLoginViewController.m; sourceTree = "<group>"; };
+		1876C72221EC8D2B00DBE837 /* CTPayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTPayViewController.h; sourceTree = "<group>"; };
+		1876C72321EC8D2B00DBE837 /* CTPayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTPayViewController.m; sourceTree = "<group>"; };
 		1880DFD621E8A1570084EDB8 /* MDOep4Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDOep4Model.h; sourceTree = "<group>"; };
 		1880DFD721E8A1570084EDB8 /* MDOep4Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDOep4Model.m; sourceTree = "<group>"; };
 		1880DFD921E8A1710084EDB8 /* MDOep4InfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDOep4InfoModel.h; sourceTree = "<group>"; };
@@ -1184,6 +1193,12 @@
 			children = (
 				6E06F5D921D8AEAA00E4AC77 /* CTScanViewController.h */,
 				6E06F5DA21D8AEAA00E4AC77 /* CTScanViewController.m */,
+				1876C71F21EC76DE00DBE837 /* CTLoginViewController.h */,
+				1876C72021EC76DE00DBE837 /* CTLoginViewController.m */,
+				1876C72221EC8D2B00DBE837 /* CTPayViewController.h */,
+				1876C72321EC8D2B00DBE837 /* CTPayViewController.m */,
+				1820472A21ED90920079F7F7 /* CTPaySureViewController.h */,
+				1820472B21ED90920079F7F7 /* CTPaySureViewController.m */,
 			);
 			path = scan;
 			sourceTree = "<group>";
@@ -2332,6 +2347,7 @@
 				6EFF03A521D37855004327C5 /* Interceptor.m in Sources */,
 				6EFF036E21D37855004327C5 /* CTParentLandscapeViewController.m in Sources */,
 				1862E6E321E72B3F008B83BC /* MBigNumber.m in Sources */,
+				1876C72421EC8D2B00DBE837 /* CTPayViewController.m in Sources */,
 				6EFF038D21D37855004327C5 /* CVPressView.m in Sources */,
 				1862E6F521E72B3F008B83BC /* ONTPrivateKey.m in Sources */,
 				6EFF038121D37855004327C5 /* CVScanMaskView.m in Sources */,
@@ -2362,6 +2378,7 @@
 				6EFF039E21D37855004327C5 /* CVMenuView.m in Sources */,
 				6E7E7B1521E0DFE4007C9E22 /* ONTUtils.m in Sources */,
 				1880DFD821E8A1570084EDB8 /* MDOep4Model.m in Sources */,
+				1876C72121EC76DE00DBE837 /* CTLoginViewController.m in Sources */,
 				1862E6DE21E72B3F008B83BC /* memzero.c in Sources */,
 				6EFF02D821D37855004327C5 /* MTLTransformerErrorHandling.m in Sources */,
 				1862E6E121E72B3F008B83BC /* sha3.c in Sources */,
@@ -2384,6 +2401,7 @@
 				6EFF030A21D37855004327C5 /* qrencode.c in Sources */,
 				6EFF036B21D37855004327C5 /* CCAccountCountDownCell.m in Sources */,
 				6E06F5C621D8204D00E4AC77 /* HTTPClient.m in Sources */,
+				1820472C21ED90920079F7F7 /* CTPaySureViewController.m in Sources */,
 				6EFF02D221D37855004327C5 /* MTLModel.m in Sources */,
 				6EFF03E421D552B8004327C5 /* CCTitleTextViewCell.m in Sources */,
 				1862E6ED21E72B3F008B83BC /* ONTInvokeCode.m in Sources */,

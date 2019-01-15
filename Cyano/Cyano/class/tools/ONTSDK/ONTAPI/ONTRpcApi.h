@@ -85,7 +85,5 @@
 //获取 network id
 - (void)getNetworkIDCallback:(void (^)(id result, NSError *error))callback;
 
-//获取 oep4 列表
-- (void)getOep4ListWithUrl:(NSString *)urlString callback:(void (^)(id result, NSError *error))callback;
 
 @end
