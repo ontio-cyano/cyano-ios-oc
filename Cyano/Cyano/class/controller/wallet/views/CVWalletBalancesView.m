@@ -324,20 +324,25 @@
     NSString * fee = [Helper getRealFee:@"500" GasLimit:@"20000"];
     BOOL isEnough = [Helper isEnoughOng:self.ongValueLabel.text fee:fee];
     if (isEnough) {
-        ONTAccount *account = [GCHApplication requestDefaultAccount];;
-        NSString *txHex = [account makeClaimOngTxWithAddress:account.address.address amount:self.claimOngString gasPrice:500 gasLimit:20000];
-        
-        [[ONTRpcApi shareInstance] sendRawtransactionWithHexTx:txHex preExec:NO callback:^(NSString *txHash, NSError *error) {
-            if (error) {
-                [CVShowLabelView showTitle:@"error" detail:nil];
-            } else {
-                [self getUnboundOng];
-            }
+        [GCHApplication inputPassword:^{
+            [self claimOngTrade];
         }];
+        
     }else{
         [CVShowLabelView showTitle:@"Not enough ONG to make the transaction." detail:nil];
     }
+}
+-(void)claimOngTrade{
+    ONTAccount *account = [GCHApplication requestDefaultAccount];;
+    NSString *txHex = [account makeClaimOngTxWithAddress:account.address.address amount:self.claimOngString gasPrice:500 gasLimit:20000];
     
+    [[ONTRpcApi shareInstance] sendRawtransactionWithHexTx:txHex preExec:NO callback:^(NSString *txHash, NSError *error) {
+        if (error) {
+            [CVShowLabelView showTitle:@"error" detail:nil];
+        } else {
+            [self getUnboundOng];
+        }
+    }];
 }
 #pragma mark OEP4
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -13,5 +13,7 @@
 #import "ONTBalance.h"
 #import "ONTMnemonicCode.h"
 
+#import "ONTIdentity.h"
+
 #import "Oep4.h"
 #import "NeoVM.h"

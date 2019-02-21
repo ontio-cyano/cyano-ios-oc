@@ -80,7 +80,11 @@
 #define NONULLSTR(str) ((str && str != (id)[NSNull null]) ? (str) : @"")
 #define NONULLNUM(num) ((num && num != (id)[NSNull null]) ? (num) : @(0))
 
-
+#define ONTIDTX @"ONTIDTX"
+#define DEFAULTONTID @"DEFAULTONTID"
+#define DEFAULTACCOUTNKEYSTORE @"DEFAULTACCOUTNKEYSTORE"
+#define DEFAULTIDENTITY @"DEFAULTIDENTITY"
+#define ONTIDAUTHINFO @"ONTIDAUTHINFO"
 
 
 #ifdef DEBUG

@@ -171,6 +171,18 @@
             if (_invokePasswordFreeCallback) {
                 _invokePasswordFreeCallback(resultDic);
             }
+        }else if ([resultDic[@"action"] isEqualToString:@"authentication"]) {
+            if (_authenticationCallback) {
+                _authenticationCallback(resultDic);
+            }
+        }else if ([resultDic[@"action"] isEqualToString:@"authorization"]) {
+            if (_authorizationCallback) {
+                _authorizationCallback(resultDic);
+            }
+        }else if ([resultDic[@"action"] isEqualToString:@"getIdentity"]) {
+            if (_getIdentityCallback) {
+                _getIdentityCallback(resultDic);
+            }
         }
     }
 }

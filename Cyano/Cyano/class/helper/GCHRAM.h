@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface GCHRAM : NSObject
-
 @property (strong, nonatomic) MDAccount *defaultAccount;
+@property (strong, nonatomic) MDAccount *defaultONTId;
 
 + (GCHRAM *)instance;
 

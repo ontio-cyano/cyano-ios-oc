@@ -74,6 +74,43 @@
 		1862E70721E72B3F008B83BC /* SHAHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E6C421E72B3F008B83BC /* SHAHash.m */; };
 		1862E70821E72B3F008B83BC /* NSMutableData+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E6C521E72B3F008B83BC /* NSMutableData+Extend.m */; };
 		1862E70C21E732A4008B83BC /* ReceiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E70B21E732A4008B83BC /* ReceiveViewController.m */; };
+		1864A000221BDC45005B0431 /* ONTOBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18649FF0221BDC42005B0431 /* ONTOBaseViewController.m */; };
+		1864A001221BDC45005B0431 /* ONTIdPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18649FF2221BDC42005B0431 /* ONTIdPreViewController.m */; };
+		1864A002221BDC45005B0431 /* ONTIdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18649FF7221BDC44005B0431 /* ONTIdViewController.m */; };
+		1864A003221BDC45005B0431 /* ONTOSDKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18649FF9221BDC44005B0431 /* ONTOSDKViewController.m */; };
+		1864A004221BDC45005B0431 /* ONTIdExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18649FFC221BDC45005B0431 /* ONTIdExportViewController.m */; };
+		1864A005221BDC45005B0431 /* ONTOAuthSDKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18649FFD221BDC45005B0431 /* ONTOAuthSDKViewController.m */; };
+		1864A006221BDC45005B0431 /* ONTIdImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18649FFE221BDC45005B0431 /* ONTIdImportViewController.m */; };
+		1864A007221BDC45005B0431 /* ONTOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18649FFF221BDC45005B0431 /* ONTOWebViewController.m */; };
+		1864A00B221BDCEF005B0431 /* ONTIdWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A009221BDCEF005B0431 /* ONTIdWebView.m */; };
+		1864A00E221BDD71005B0431 /* ONTOMBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A00D221BDD71005B0431 /* ONTOMBProgressHUD.m */; };
+		1864A011221BDD9B005B0431 /* UILabel+changeSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A010221BDD9B005B0431 /* UILabel+changeSpace.m */; };
+		1864A015221BDDC3005B0431 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A013221BDDC3005B0431 /* UITextView+Placeholder.m */; };
+		1864A019221BDE14005B0431 /* ToastUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A018221BDE13005B0431 /* ToastUtil.m */; };
+		1864A04A221BDE3E005B0431 /* EasyLoadingTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A01C221BDE3E005B0431 /* EasyLoadingTypes.m */; };
+		1864A04B221BDE3E005B0431 /* EasyTextConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A01F221BDE3E005B0431 /* EasyTextConfig.m */; };
+		1864A04C221BDE3E005B0431 /* EasyAlertTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A020221BDE3E005B0431 /* EasyAlertTypes.m */; };
+		1864A04D221BDE3E005B0431 /* EasyTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A021221BDE3E005B0431 /* EasyTextView.m */; };
+		1864A04E221BDE3E005B0431 /* EasyEmptyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A023221BDE3E005B0431 /* EasyEmptyConfig.m */; };
+		1864A04F221BDE3E005B0431 /* EasyEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A024221BDE3E005B0431 /* EasyEmptyView.m */; };
+		1864A050221BDE3E005B0431 /* EasyShowUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A027221BDE3E005B0431 /* EasyShowUtils.m */; };
+		1864A051221BDE3E005B0431 /* EasyShowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A02B221BDE3E005B0431 /* EasyShowLabel.m */; };
+		1864A052221BDE3E005B0431 /* EasyLoadingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A02D221BDE3E005B0431 /* EasyLoadingConfig.m */; };
+		1864A053221BDE3E005B0431 /* EasyAlertItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A02E221BDE3E005B0431 /* EasyAlertItem.m */; };
+		1864A054221BDE3E005B0431 /* EasyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A02F221BDE3E005B0431 /* EasyAlertView.m */; };
+		1864A055221BDE3E005B0431 /* EasyTextGlobalConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A030221BDE3E005B0431 /* EasyTextGlobalConfig.m */; };
+		1864A056221BDE3E005B0431 /* EasyLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A031221BDE3E005B0431 /* EasyLoadingView.m */; };
+		1864A057221BDE3E005B0431 /* EasyEmptyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A034221BDE3E005B0431 /* EasyEmptyPart.m */; };
+		1864A058221BDE3E005B0431 /* UIView+EasyShowExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A035221BDE3E005B0431 /* UIView+EasyShowExt.m */; };
+		1864A059221BDE3E005B0431 /* EasyLoadingGlobalConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A037221BDE3E005B0431 /* EasyLoadingGlobalConfig.m */; };
+		1864A05A221BDE3E005B0431 /* EasyTextBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A038221BDE3E005B0431 /* EasyTextBgView.m */; };
+		1864A05B221BDE3E005B0431 /* EasyTextTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A039221BDE3E005B0431 /* EasyTextTypes.m */; };
+		1864A05C221BDE3E005B0431 /* EasyAlertConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A03B221BDE3E005B0431 /* EasyAlertConfig.m */; };
+		1864A05D221BDE3E005B0431 /* EasyEmptyGlobalConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A040221BDE3E005B0431 /* EasyEmptyGlobalConfig.m */; };
+		1864A05E221BDE3E005B0431 /* EasyAlertGlobalConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A042221BDE3E005B0431 /* EasyAlertGlobalConfig.m */; };
+		1864A05F221BDE3E005B0431 /* EasyEmptyTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A043221BDE3E005B0431 /* EasyEmptyTypes.m */; };
+		1864A060221BDE3E005B0431 /* EasyAlertPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864A045221BDE3E005B0431 /* EasyAlertPart.m */; };
+		1864A062221BE7AA005B0431 /* cyano.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1864A061221BE7AA005B0431 /* cyano.bundle */; };
 		1876C71B21EC283700DBE837 /* OEP4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876C71A21EC283700DBE837 /* OEP4ViewController.m */; };
 		1876C71E21EC332600DBE837 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876C71D21EC332600DBE837 /* Helper.m */; };
 		1876C72121EC76DE00DBE837 /* CTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876C72021EC76DE00DBE837 /* CTLoginViewController.m */; };
@@ -421,6 +458,80 @@
 		1862E6C721E72B3F008B83BC /* NSString+Base58.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base58.h"; sourceTree = "<group>"; };
 		1862E70A21E732A4008B83BC /* ReceiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveViewController.h; sourceTree = "<group>"; };
 		1862E70B21E732A4008B83BC /* ReceiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiveViewController.m; sourceTree = "<group>"; };
+		18649FF0221BDC42005B0431 /* ONTOBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTOBaseViewController.m; sourceTree = "<group>"; };
+		18649FF1221BDC42005B0431 /* ONTOSDKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTOSDKViewController.h; sourceTree = "<group>"; };
+		18649FF2221BDC42005B0431 /* ONTIdPreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTIdPreViewController.m; sourceTree = "<group>"; };
+		18649FF3221BDC43005B0431 /* ONTOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTOWebViewController.h; sourceTree = "<group>"; };
+		18649FF4221BDC43005B0431 /* ONTIdImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTIdImportViewController.h; sourceTree = "<group>"; };
+		18649FF5221BDC43005B0431 /* ONTIdPreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTIdPreViewController.h; sourceTree = "<group>"; };
+		18649FF6221BDC43005B0431 /* ONTOBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTOBaseViewController.h; sourceTree = "<group>"; };
+		18649FF7221BDC44005B0431 /* ONTIdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTIdViewController.m; sourceTree = "<group>"; };
+		18649FF8221BDC44005B0431 /* ONTIdExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTIdExportViewController.h; sourceTree = "<group>"; };
+		18649FF9221BDC44005B0431 /* ONTOSDKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTOSDKViewController.m; sourceTree = "<group>"; };
+		18649FFA221BDC44005B0431 /* ONTIdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTIdViewController.h; sourceTree = "<group>"; };
+		18649FFB221BDC44005B0431 /* ONTOAuthSDKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTOAuthSDKViewController.h; sourceTree = "<group>"; };
+		18649FFC221BDC45005B0431 /* ONTIdExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTIdExportViewController.m; sourceTree = "<group>"; };
+		18649FFD221BDC45005B0431 /* ONTOAuthSDKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTOAuthSDKViewController.m; sourceTree = "<group>"; };
+		18649FFE221BDC45005B0431 /* ONTIdImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTIdImportViewController.m; sourceTree = "<group>"; };
+		18649FFF221BDC45005B0431 /* ONTOWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTOWebViewController.m; sourceTree = "<group>"; };
+		1864A009221BDCEF005B0431 /* ONTIdWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTIdWebView.m; sourceTree = "<group>"; };
+		1864A00A221BDCEF005B0431 /* ONTIdWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTIdWebView.h; sourceTree = "<group>"; };
+		1864A00C221BDD71005B0431 /* ONTOMBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONTOMBProgressHUD.h; sourceTree = "<group>"; };
+		1864A00D221BDD71005B0431 /* ONTOMBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONTOMBProgressHUD.m; sourceTree = "<group>"; };
+		1864A00F221BDD9B005B0431 /* UILabel+changeSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+changeSpace.h"; sourceTree = "<group>"; };
+		1864A010221BDD9B005B0431 /* UILabel+changeSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+changeSpace.m"; sourceTree = "<group>"; };
+		1864A013221BDDC3005B0431 /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
+		1864A014221BDDC3005B0431 /* UITextView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder.h"; sourceTree = "<group>"; };
+		1864A017221BDE13005B0431 /* ToastUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastUtil.h; sourceTree = "<group>"; };
+		1864A018221BDE13005B0431 /* ToastUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastUtil.m; sourceTree = "<group>"; };
+		1864A01B221BDE3E005B0431 /* EasyLoadingGlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLoadingGlobalConfig.h; sourceTree = "<group>"; };
+		1864A01C221BDE3E005B0431 /* EasyLoadingTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLoadingTypes.m; sourceTree = "<group>"; };
+		1864A01D221BDE3E005B0431 /* UIView+EasyShowExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+EasyShowExt.h"; sourceTree = "<group>"; };
+		1864A01E221BDE3E005B0431 /* EasyEmptyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyEmptyPart.h; sourceTree = "<group>"; };
+		1864A01F221BDE3E005B0431 /* EasyTextConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyTextConfig.m; sourceTree = "<group>"; };
+		1864A020221BDE3E005B0431 /* EasyAlertTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyAlertTypes.m; sourceTree = "<group>"; };
+		1864A021221BDE3E005B0431 /* EasyTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyTextView.m; sourceTree = "<group>"; };
+		1864A022221BDE3E005B0431 /* EasyAlertConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyAlertConfig.h; sourceTree = "<group>"; };
+		1864A023221BDE3E005B0431 /* EasyEmptyConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyEmptyConfig.m; sourceTree = "<group>"; };
+		1864A024221BDE3E005B0431 /* EasyEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyEmptyView.m; sourceTree = "<group>"; };
+		1864A025221BDE3E005B0431 /* EasyTextTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyTextTypes.h; sourceTree = "<group>"; };
+		1864A026221BDE3E005B0431 /* EasyTextBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyTextBgView.h; sourceTree = "<group>"; };
+		1864A027221BDE3E005B0431 /* EasyShowUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyShowUtils.m; sourceTree = "<group>"; };
+		1864A028221BDE3E005B0431 /* EasyAlertPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyAlertPart.h; sourceTree = "<group>"; };
+		1864A029221BDE3E005B0431 /* EasyEmptyTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyEmptyTypes.h; sourceTree = "<group>"; };
+		1864A02A221BDE3E005B0431 /* EasyAlertGlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyAlertGlobalConfig.h; sourceTree = "<group>"; };
+		1864A02B221BDE3E005B0431 /* EasyShowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyShowLabel.m; sourceTree = "<group>"; };
+		1864A02C221BDE3E005B0431 /* EasyEmptyGlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyEmptyGlobalConfig.h; sourceTree = "<group>"; };
+		1864A02D221BDE3E005B0431 /* EasyLoadingConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLoadingConfig.m; sourceTree = "<group>"; };
+		1864A02E221BDE3E005B0431 /* EasyAlertItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyAlertItem.m; sourceTree = "<group>"; };
+		1864A02F221BDE3E005B0431 /* EasyAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyAlertView.m; sourceTree = "<group>"; };
+		1864A030221BDE3E005B0431 /* EasyTextGlobalConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyTextGlobalConfig.m; sourceTree = "<group>"; };
+		1864A031221BDE3E005B0431 /* EasyLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLoadingView.m; sourceTree = "<group>"; };
+		1864A032221BDE3E005B0431 /* EasyAlertTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyAlertTypes.h; sourceTree = "<group>"; };
+		1864A033221BDE3E005B0431 /* EasyTextConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyTextConfig.h; sourceTree = "<group>"; };
+		1864A034221BDE3E005B0431 /* EasyEmptyPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyEmptyPart.m; sourceTree = "<group>"; };
+		1864A035221BDE3E005B0431 /* UIView+EasyShowExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+EasyShowExt.m"; sourceTree = "<group>"; };
+		1864A036221BDE3E005B0431 /* EasyLoadingTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLoadingTypes.h; sourceTree = "<group>"; };
+		1864A037221BDE3E005B0431 /* EasyLoadingGlobalConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyLoadingGlobalConfig.m; sourceTree = "<group>"; };
+		1864A038221BDE3E005B0431 /* EasyTextBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyTextBgView.m; sourceTree = "<group>"; };
+		1864A039221BDE3E005B0431 /* EasyTextTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyTextTypes.m; sourceTree = "<group>"; };
+		1864A03A221BDE3E005B0431 /* EasyEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyEmptyView.h; sourceTree = "<group>"; };
+		1864A03B221BDE3E005B0431 /* EasyAlertConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyAlertConfig.m; sourceTree = "<group>"; };
+		1864A03C221BDE3E005B0431 /* EasyEmptyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyEmptyConfig.h; sourceTree = "<group>"; };
+		1864A03D221BDE3E005B0431 /* EasyTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyTextView.h; sourceTree = "<group>"; };
+		1864A03E221BDE3E005B0431 /* EasyAlertItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyAlertItem.h; sourceTree = "<group>"; };
+		1864A03F221BDE3E005B0431 /* EasyLoadingConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLoadingConfig.h; sourceTree = "<group>"; };
+		1864A040221BDE3E005B0431 /* EasyEmptyGlobalConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyEmptyGlobalConfig.m; sourceTree = "<group>"; };
+		1864A041221BDE3E005B0431 /* EasyShowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowLabel.h; sourceTree = "<group>"; };
+		1864A042221BDE3E005B0431 /* EasyAlertGlobalConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyAlertGlobalConfig.m; sourceTree = "<group>"; };
+		1864A043221BDE3E005B0431 /* EasyEmptyTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyEmptyTypes.m; sourceTree = "<group>"; };
+		1864A044221BDE3E005B0431 /* EasyShowUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowUtils.h; sourceTree = "<group>"; };
+		1864A045221BDE3E005B0431 /* EasyAlertPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyAlertPart.m; sourceTree = "<group>"; };
+		1864A046221BDE3E005B0431 /* EasyShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowView.h; sourceTree = "<group>"; };
+		1864A047221BDE3E005B0431 /* EasyLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyLoadingView.h; sourceTree = "<group>"; };
+		1864A048221BDE3E005B0431 /* EasyTextGlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyTextGlobalConfig.h; sourceTree = "<group>"; };
+		1864A049221BDE3E005B0431 /* EasyAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyAlertView.h; sourceTree = "<group>"; };
+		1864A061221BE7AA005B0431 /* cyano.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = cyano.bundle; sourceTree = "<group>"; };
 		1876C71921EC283700DBE837 /* OEP4ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OEP4ViewController.h; sourceTree = "<group>"; };
 		1876C71A21EC283700DBE837 /* OEP4ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OEP4ViewController.m; sourceTree = "<group>"; };
 		1876C71C21EC332600DBE837 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
@@ -1114,6 +1225,115 @@
 			path = transaction;
 			sourceTree = "<group>";
 		};
+		18649FEF221BDC30005B0431 /* ONTID */ = {
+			isa = PBXGroup;
+			children = (
+				18649FF8221BDC44005B0431 /* ONTIdExportViewController.h */,
+				18649FFC221BDC45005B0431 /* ONTIdExportViewController.m */,
+				18649FF4221BDC43005B0431 /* ONTIdImportViewController.h */,
+				18649FFE221BDC45005B0431 /* ONTIdImportViewController.m */,
+				18649FF5221BDC43005B0431 /* ONTIdPreViewController.h */,
+				18649FF2221BDC42005B0431 /* ONTIdPreViewController.m */,
+				18649FFA221BDC44005B0431 /* ONTIdViewController.h */,
+				18649FF7221BDC44005B0431 /* ONTIdViewController.m */,
+				18649FFB221BDC44005B0431 /* ONTOAuthSDKViewController.h */,
+				18649FFD221BDC45005B0431 /* ONTOAuthSDKViewController.m */,
+				18649FF6221BDC43005B0431 /* ONTOBaseViewController.h */,
+				18649FF0221BDC42005B0431 /* ONTOBaseViewController.m */,
+				18649FF1221BDC42005B0431 /* ONTOSDKViewController.h */,
+				18649FF9221BDC44005B0431 /* ONTOSDKViewController.m */,
+				18649FF3221BDC43005B0431 /* ONTOWebViewController.h */,
+				18649FFF221BDC45005B0431 /* ONTOWebViewController.m */,
+			);
+			path = ONTID;
+			sourceTree = "<group>";
+		};
+		1864A008221BDCB7005B0431 /* ONTIDTool */ = {
+			isa = PBXGroup;
+			children = (
+				1864A01A221BDE3E005B0431 /* EasyShowView */,
+				1864A016221BDE13005B0431 /* ToastUtil */,
+				1864A012221BDDC3005B0431 /* UITextView */,
+				1864A00F221BDD9B005B0431 /* UILabel+changeSpace.h */,
+				1864A010221BDD9B005B0431 /* UILabel+changeSpace.m */,
+				1864A00C221BDD71005B0431 /* ONTOMBProgressHUD.h */,
+				1864A00D221BDD71005B0431 /* ONTOMBProgressHUD.m */,
+			);
+			path = ONTIDTool;
+			sourceTree = "<group>";
+		};
+		1864A012221BDDC3005B0431 /* UITextView */ = {
+			isa = PBXGroup;
+			children = (
+				1864A013221BDDC3005B0431 /* UITextView+Placeholder.m */,
+				1864A014221BDDC3005B0431 /* UITextView+Placeholder.h */,
+			);
+			path = UITextView;
+			sourceTree = "<group>";
+		};
+		1864A016221BDE13005B0431 /* ToastUtil */ = {
+			isa = PBXGroup;
+			children = (
+				1864A017221BDE13005B0431 /* ToastUtil.h */,
+				1864A018221BDE13005B0431 /* ToastUtil.m */,
+			);
+			path = ToastUtil;
+			sourceTree = "<group>";
+		};
+		1864A01A221BDE3E005B0431 /* EasyShowView */ = {
+			isa = PBXGroup;
+			children = (
+				1864A01B221BDE3E005B0431 /* EasyLoadingGlobalConfig.h */,
+				1864A01C221BDE3E005B0431 /* EasyLoadingTypes.m */,
+				1864A01D221BDE3E005B0431 /* UIView+EasyShowExt.h */,
+				1864A01E221BDE3E005B0431 /* EasyEmptyPart.h */,
+				1864A01F221BDE3E005B0431 /* EasyTextConfig.m */,
+				1864A020221BDE3E005B0431 /* EasyAlertTypes.m */,
+				1864A021221BDE3E005B0431 /* EasyTextView.m */,
+				1864A022221BDE3E005B0431 /* EasyAlertConfig.h */,
+				1864A023221BDE3E005B0431 /* EasyEmptyConfig.m */,
+				1864A024221BDE3E005B0431 /* EasyEmptyView.m */,
+				1864A025221BDE3E005B0431 /* EasyTextTypes.h */,
+				1864A026221BDE3E005B0431 /* EasyTextBgView.h */,
+				1864A027221BDE3E005B0431 /* EasyShowUtils.m */,
+				1864A028221BDE3E005B0431 /* EasyAlertPart.h */,
+				1864A029221BDE3E005B0431 /* EasyEmptyTypes.h */,
+				1864A02A221BDE3E005B0431 /* EasyAlertGlobalConfig.h */,
+				1864A02B221BDE3E005B0431 /* EasyShowLabel.m */,
+				1864A02C221BDE3E005B0431 /* EasyEmptyGlobalConfig.h */,
+				1864A02D221BDE3E005B0431 /* EasyLoadingConfig.m */,
+				1864A02E221BDE3E005B0431 /* EasyAlertItem.m */,
+				1864A02F221BDE3E005B0431 /* EasyAlertView.m */,
+				1864A030221BDE3E005B0431 /* EasyTextGlobalConfig.m */,
+				1864A031221BDE3E005B0431 /* EasyLoadingView.m */,
+				1864A032221BDE3E005B0431 /* EasyAlertTypes.h */,
+				1864A033221BDE3E005B0431 /* EasyTextConfig.h */,
+				1864A034221BDE3E005B0431 /* EasyEmptyPart.m */,
+				1864A035221BDE3E005B0431 /* UIView+EasyShowExt.m */,
+				1864A036221BDE3E005B0431 /* EasyLoadingTypes.h */,
+				1864A037221BDE3E005B0431 /* EasyLoadingGlobalConfig.m */,
+				1864A038221BDE3E005B0431 /* EasyTextBgView.m */,
+				1864A039221BDE3E005B0431 /* EasyTextTypes.m */,
+				1864A03A221BDE3E005B0431 /* EasyEmptyView.h */,
+				1864A03B221BDE3E005B0431 /* EasyAlertConfig.m */,
+				1864A03C221BDE3E005B0431 /* EasyEmptyConfig.h */,
+				1864A03D221BDE3E005B0431 /* EasyTextView.h */,
+				1864A03E221BDE3E005B0431 /* EasyAlertItem.h */,
+				1864A03F221BDE3E005B0431 /* EasyLoadingConfig.h */,
+				1864A040221BDE3E005B0431 /* EasyEmptyGlobalConfig.m */,
+				1864A041221BDE3E005B0431 /* EasyShowLabel.h */,
+				1864A042221BDE3E005B0431 /* EasyAlertGlobalConfig.m */,
+				1864A043221BDE3E005B0431 /* EasyEmptyTypes.m */,
+				1864A044221BDE3E005B0431 /* EasyShowUtils.h */,
+				1864A045221BDE3E005B0431 /* EasyAlertPart.m */,
+				1864A046221BDE3E005B0431 /* EasyShowView.h */,
+				1864A047221BDE3E005B0431 /* EasyLoadingView.h */,
+				1864A048221BDE3E005B0431 /* EasyTextGlobalConfig.h */,
+				1864A049221BDE3E005B0431 /* EasyAlertView.h */,
+			);
+			path = EasyShowView;
+			sourceTree = "<group>";
+		};
 		1880DFD221E8A0D00084EDB8 /* oep4 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1279,6 +1499,8 @@
 			children = (
 				6E7E7B5A21E0E67B007C9E22 /* RNJsWebView.h */,
 				6E7E7B5921E0E67B007C9E22 /* RNJsWebView.m */,
+				1864A00A221BDCEF005B0431 /* ONTIdWebView.h */,
+				1864A009221BDCEF005B0431 /* ONTIdWebView.m */,
 			);
 			path = ONTWebView;
 			sourceTree = "<group>";
@@ -1342,6 +1564,7 @@
 		6EFF005521D37853004327C5 /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				1864A008221BDCB7005B0431 /* ONTIDTool */,
 				6E7E7A4621E0DFE4007C9E22 /* ONTSDK */,
 				6EFF006321D37853004327C5 /* LFDownload */,
 				6EFF006D21D37853004327C5 /* Mantle */,
@@ -1603,6 +1826,7 @@
 		6EFF012621D37854004327C5 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				18649FEF221BDC30005B0431 /* ONTID */,
 				6EFF03C721D37B77004327C5 /* wallet */,
 				6EFF03C821D37B83004327C5 /* identity */,
 				6EFF03C921D37B8B004327C5 /* apps */,
@@ -2044,6 +2268,7 @@
 				6EFF004921D36CB5004327C5 /* LaunchScreen.storyboard */,
 				6EFF004C21D36CB5004327C5 /* Info.plist */,
 				6EFF004D21D36CB5004327C5 /* main.m */,
+				1864A061221BE7AA005B0431 /* cyano.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2174,6 +2399,7 @@
 				6EFF02EB21D37855004327C5 /* TZImagePickerController.bundle in Resources */,
 				1862E6DD21E72B3F008B83BC /* secp256k1.table in Resources */,
 				6EFF004821D36CB5004327C5 /* Assets.xcassets in Resources */,
+				1864A062221BE7AA005B0431 /* cyano.bundle in Resources */,
 				6EFF03C121D378C2004327C5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2229,6 +2455,7 @@
 				1862E6D421E72B3F008B83BC /* IAGAesComponents.m in Sources */,
 				6EFF02EA21D37855004327C5 /* TZPhotoPreviewController.m in Sources */,
 				6EFF030721D37855004327C5 /* UIView+GetViewController.m in Sources */,
+				1864A00B221BDCEF005B0431 /* ONTIdWebView.m in Sources */,
 				1862E6E421E72B3F008B83BC /* base58.c in Sources */,
 				1862E6E721E72B3F008B83BC /* MnemonicCode.m in Sources */,
 				6EFF035421D37855004327C5 /* CCRoundImageTitleCell.m in Sources */,
@@ -2237,17 +2464,23 @@
 				6EFF02DA21D37855004327C5 /* NSDictionary+MTLManipulationAdditions.m in Sources */,
 				1862E70221E72B3F008B83BC /* ONTTransactionNotifyInfo.m in Sources */,
 				6EFF02C821D37855004327C5 /* NSData+MD5Digest.m in Sources */,
+				1864A04B221BDE3E005B0431 /* EasyTextConfig.m in Sources */,
 				6EFF030921D37855004327C5 /* bitstream.c in Sources */,
 				6EFF02D321D37855004327C5 /* NSDictionary+MTLMappingAdditions.m in Sources */,
+				1864A001221BDC45005B0431 /* ONTIdPreViewController.m in Sources */,
 				6EFF02D421D37855004327C5 /* MTLValueTransformer.m in Sources */,
+				1864A051221BDE3E005B0431 /* EasyShowLabel.m in Sources */,
 				6EFF039D21D37855004327C5 /* CVNavCancelView.m in Sources */,
 				1862E6D821E72B3F008B83BC /* IAGCipheredData.m in Sources */,
 				6E06F5DB21D8AEAA00E4AC77 /* CTScanViewController.m in Sources */,
 				6EFF02EC21D37855004327C5 /* TZProgressView.m in Sources */,
 				6E7E7B1621E0DFE4007C9E22 /* ONTBalance.m in Sources */,
+				1864A04D221BDE3E005B0431 /* EasyTextView.m in Sources */,
 				6EFF034E21D37855004327C5 /* CCTextFieldCell.m in Sources */,
+				1864A006221BDC45005B0431 /* ONTIdImportViewController.m in Sources */,
 				6EFF039A21D37855004327C5 /* CVCellIndicator.m in Sources */,
 				1880DFDE21E8A5860084EDB8 /* TokensCell.m in Sources */,
+				1864A05C221BDE3E005B0431 /* EasyAlertConfig.m in Sources */,
 				1862E6D521E72B3F008B83BC /* IAGGcmMathComponents.m in Sources */,
 				6EFF03B721D37855004327C5 /* GCHRAM.m in Sources */,
 				6EFF02E321D37855004327C5 /* FACameraViewController.m in Sources */,
@@ -2265,10 +2498,12 @@
 				1862E6E221E72B3F008B83BC /* crypto_scrypt-nosse.c in Sources */,
 				6EFF02F621D37855004327C5 /* NSObject+DB_Select.m in Sources */,
 				6EFF02C721D37855004327C5 /* LFDownloadImageView.m in Sources */,
+				1864A04F221BDE3E005B0431 /* EasyEmptyView.m in Sources */,
 				6EFF02EF21D37855004327C5 /* TZPhotoPreviewCell.m in Sources */,
 				6EFF02D921D37855004327C5 /* MTLReflection.m in Sources */,
 				6E06F5D121D8294500E4AC77 /* MDApps.m in Sources */,
 				6EFF038F21D37855004327C5 /* CVShowLabelView.m in Sources */,
+				1864A05E221BDE3E005B0431 /* EasyAlertGlobalConfig.m in Sources */,
 				6EFF039721D37855004327C5 /* CVSimpleSlider.m in Sources */,
 				1862E70521E72B3F008B83BC /* NSString+Base58.m in Sources */,
 				6EFF036A21D37855004327C5 /* CCAccountTitleTextFieldCell.m in Sources */,
@@ -2281,9 +2516,11 @@
 				6EFF03A221D37855004327C5 /* SXTextView.m in Sources */,
 				6EFF031521D37855004327C5 /* JSONKit.m in Sources */,
 				6EFF034B21D37855004327C5 /* CCTitleCell.m in Sources */,
+				1864A05F221BDE3E005B0431 /* EasyEmptyTypes.m in Sources */,
 				6EFF038621D37855004327C5 /* CVDatePickerView.m in Sources */,
 				1862E6FB21E72B3F008B83BC /* ONTDappInvokeConfig.m in Sources */,
 				6EFF037621D37855004327C5 /* BaseModel.m in Sources */,
+				1864A04C221BDE3E005B0431 /* EasyAlertTypes.m in Sources */,
 				6EFF035021D37855004327C5 /* CCAvatarCell.m in Sources */,
 				6EFF004E21D36CB5004327C5 /* main.m in Sources */,
 				1862E70021E72B3F008B83BC /* Parameter.m in Sources */,
@@ -2299,12 +2536,14 @@
 				6EFF02F421D37855004327C5 /* GCModelConst.m in Sources */,
 				1862E6F321E72B3F008B83BC /* ONTECKey.m in Sources */,
 				6EFF030821D37855004327C5 /* HDCustomComponent.m in Sources */,
+				1864A007221BDC45005B0431 /* ONTOWebViewController.m in Sources */,
 				1862E70721E72B3F008B83BC /* SHAHash.m in Sources */,
 				6EFF038421D37855004327C5 /* CVActionSheet.m in Sources */,
 				1862E6F221E72B3F008B83BC /* ONTBufferReader.m in Sources */,
 				6E093D5A21DA63180086D621 /* CTEnterPasswordViewController.m in Sources */,
 				18AE43A221E74F1A00DE3F9C /* SendViewController.m in Sources */,
 				6EFF030B21D37855004327C5 /* split.c in Sources */,
+				1864A057221BDE3E005B0431 /* EasyEmptyPart.m in Sources */,
 				6EFF031121D37855004327C5 /* NSDate+Extension.m in Sources */,
 				6EFF03B221D37855004327C5 /* GCHDateUtil.m in Sources */,
 				6EFF038A21D37855004327C5 /* CVHideTableView.m in Sources */,
@@ -2316,6 +2555,7 @@
 				1876C71E21EC332600DBE837 /* Helper.m in Sources */,
 				1862E70121E72B3F008B83BC /* AbiFunction.m in Sources */,
 				6EFF034F21D37855004327C5 /* CCAvatarNameCell.m in Sources */,
+				1864A055221BDE3E005B0431 /* EasyTextGlobalConfig.m in Sources */,
 				1862E6D921E72B3F008B83BC /* secp256k1.c in Sources */,
 				1862E6EE21E72B3F008B83BC /* ONTMnemonicCode.m in Sources */,
 				6EFF034921D37855004327C5 /* CCImageTitleDetailCell.m in Sources */,
@@ -2325,17 +2565,24 @@
 				6E7E7B1321E0DFE4007C9E22 /* ONTRestfulApi.m in Sources */,
 				6EFF03D021D37BC6004327C5 /* CTIdentityViewController.m in Sources */,
 				6EFF02CF21D37855004327C5 /* MTLJSONAdapter.m in Sources */,
+				1864A05A221BDE3E005B0431 /* EasyTextBgView.m in Sources */,
 				6EFF03A121D37855004327C5 /* CVPreviewImageView.m in Sources */,
 				6EFF03C621D379B3004327C5 /* AppViewController.m in Sources */,
 				1862E6FE21E72B3F008B83BC /* BuildParams.m in Sources */,
 				6EFF03A921D37855004327C5 /* CVScrollLabelsView.m in Sources */,
 				6EFF034C21D37855004327C5 /* CCTextViewCell.m in Sources */,
+				1864A04E221BDE3E005B0431 /* EasyEmptyConfig.m in Sources */,
 				6EFF03D321D37BD1004327C5 /* CTAppsViewController.m in Sources */,
+				1864A00E221BDD71005B0431 /* ONTOMBProgressHUD.m in Sources */,
 				6EFF034D21D37855004327C5 /* CCTitleTextFieldCell.m in Sources */,
+				1864A058221BDE3E005B0431 /* UIView+EasyShowExt.m in Sources */,
 				6EFF03A821D37855004327C5 /* CVPageMaskView.m in Sources */,
 				1862E6CD21E72B3F008B83BC /* hmac.c in Sources */,
+				1864A050221BDE3E005B0431 /* EasyShowUtils.m in Sources */,
+				1864A011221BDD9B005B0431 /* UILabel+changeSpace.m in Sources */,
 				1862E6D021E72B3F008B83BC /* rand.c in Sources */,
 				6EFF02D121D37855004327C5 /* NSArray+MTLManipulationAdditions.m in Sources */,
+				1864A054221BDE3E005B0431 /* EasyAlertView.m in Sources */,
 				6EFF039F21D37855004327C5 /* CVMenuBackView.m in Sources */,
 				1862E6EC21E72B3F008B83BC /* ONTIdentity.m in Sources */,
 				6EFF030F21D37855004327C5 /* qrspec.c in Sources */,
@@ -2350,7 +2597,10 @@
 				1876C72421EC8D2B00DBE837 /* CTPayViewController.m in Sources */,
 				6EFF038D21D37855004327C5 /* CVPressView.m in Sources */,
 				1862E6F521E72B3F008B83BC /* ONTPrivateKey.m in Sources */,
+				1864A04A221BDE3E005B0431 /* EasyLoadingTypes.m in Sources */,
+				1864A002221BDC45005B0431 /* ONTIdViewController.m in Sources */,
 				6EFF038121D37855004327C5 /* CVScanMaskView.m in Sources */,
+				1864A005221BDC45005B0431 /* ONTOAuthSDKViewController.m in Sources */,
 				1862E6D721E72B3F008B83BC /* IAGError.m in Sources */,
 				1862E6CC21E72B3F008B83BC /* bip39.c in Sources */,
 				1862E6E521E72B3F008B83BC /* ecdsa.c in Sources */,
@@ -2360,9 +2610,12 @@
 				1862E6EA21E72B3F008B83BC /* DeterministicKey.m in Sources */,
 				6EFF02E521D37855004327C5 /* TZAssetCell.m in Sources */,
 				6EFF039B21D37855004327C5 /* CVNavBarView.m in Sources */,
+				1864A004221BDC45005B0431 /* ONTIdExportViewController.m in Sources */,
 				6EFF03DB21D51446004327C5 /* CTNewAccountViewController.m in Sources */,
+				1864A05D221BDE3E005B0431 /* EasyEmptyGlobalConfig.m in Sources */,
 				6EFF039C21D37855004327C5 /* CVNavBackView.m in Sources */,
 				6EFF035321D37855004327C5 /* CCRoundImageTitleDetailLRCell.m in Sources */,
+				1864A053221BDE3E005B0431 /* EasyAlertItem.m in Sources */,
 				1862E6D221E72B3F008B83BC /* IAGAesGcm.m in Sources */,
 				6EFF03A321D37855004327C5 /* AccessoryTextField.m in Sources */,
 				6EFF039921D37855004327C5 /* CVEllipseButton.m in Sources */,
@@ -2377,6 +2630,7 @@
 				6EFF03CD21D37BBB004327C5 /* CTWalletViewController.m in Sources */,
 				6EFF039E21D37855004327C5 /* CVMenuView.m in Sources */,
 				6E7E7B1521E0DFE4007C9E22 /* ONTUtils.m in Sources */,
+				1864A019221BDE14005B0431 /* ToastUtil.m in Sources */,
 				1880DFD821E8A1570084EDB8 /* MDOep4Model.m in Sources */,
 				1876C72121EC76DE00DBE837 /* CTLoginViewController.m in Sources */,
 				1862E6DE21E72B3F008B83BC /* memzero.c in Sources */,
@@ -2404,6 +2658,7 @@
 				1820472C21ED90920079F7F7 /* CTPaySureViewController.m in Sources */,
 				6EFF02D221D37855004327C5 /* MTLModel.m in Sources */,
 				6EFF03E421D552B8004327C5 /* CCTitleTextViewCell.m in Sources */,
+				1864A05B221BDE3E005B0431 /* EasyTextTypes.m in Sources */,
 				1862E6ED21E72B3F008B83BC /* ONTInvokeCode.m in Sources */,
 				6EFF035921D37855004327C5 /* CCTableViewCell.m in Sources */,
 				6EFF02CE21D37855004327C5 /* EXTRuntimeExtensions.m in Sources */,
@@ -2416,6 +2671,8 @@
 				6EFF02D021D37855004327C5 /* MTLModel+NSCoding.m in Sources */,
 				6E06F5CA21D8253100E4AC77 /* CTWebViewController.m in Sources */,
 				6EFF02D521D37855004327C5 /* NSObject+MTLComparisonAdditions.m in Sources */,
+				1864A060221BDE3E005B0431 /* EasyAlertPart.m in Sources */,
+				1864A052221BDE3E005B0431 /* EasyLoadingConfig.m in Sources */,
 				6EFF03AD21D37855004327C5 /* CountDownButton.m in Sources */,
 				6EFF031421D37855004327C5 /* UIImage+TintColor.m in Sources */,
 				6EFF038721D37855004327C5 /* CVPickerView.m in Sources */,
@@ -2435,9 +2692,12 @@
 				1862E6DB21E72B3F008B83BC /* ripemd160.c in Sources */,
 				6EFF02E921D37855004327C5 /* UIView+Layout.m in Sources */,
 				6EFF02E621D37855004327C5 /* TZVideoPlayerController.m in Sources */,
+				1864A003221BDC45005B0431 /* ONTOSDKViewController.m in Sources */,
+				1864A000221BDC45005B0431 /* ONTOBaseViewController.m in Sources */,
 				1862E6D621E72B3F008B83BC /* IAGBitwiseComponents.m in Sources */,
 				6EFF03A421D37855004327C5 /* PasswordTextField.m in Sources */,
 				6EFF035521D37855004327C5 /* CCRoundCell.m in Sources */,
+				1864A015221BDDC3005B0431 /* UITextView+Placeholder.m in Sources */,
 				6EFF004021D36CB4004327C5 /* AppDelegate.m in Sources */,
 				1862E70421E72B3F008B83BC /* NSData+Extend.m in Sources */,
 				6EFF030D21D37855004327C5 /* qrinput.c in Sources */,
@@ -2452,7 +2712,9 @@
 				6EFF02C921D37855004327C5 /* NSString+MD5Digest.m in Sources */,
 				1880DFDB21E8A1710084EDB8 /* MDOep4InfoModel.m in Sources */,
 				6EFF037321D37855004327C5 /* MDTitleDetail.m in Sources */,
+				1864A056221BDE3E005B0431 /* EasyLoadingView.m in Sources */,
 				6EFF035221D37855004327C5 /* CCRoundTextViewCell.m in Sources */,
+				1864A059221BDE3E005B0431 /* EasyLoadingGlobalConfig.m in Sources */,
 				6EFF038B21D37855004327C5 /* CVParentControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2633,7 +2895,7 @@
 		};
 		6EFF005321D36CB5004327C5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC1174605DAD710B7AC52FF4 /* Pods-Cyano.release.xcconfig */;
+			baseConfigurationReference = F068DF084B9FFE63A2C53FE0 /* Pods-Cyano.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
