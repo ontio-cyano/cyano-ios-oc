@@ -1,0 +1,15 @@
+# use_frameworks!
+ platform :ios, '8.0'
+
+target 'Cyano' do
+    pod 'AFNetworking' 
+    pod 'MJRefresh' 
+    pod 'SDWebImage' 
+    pod 'YYKit', '~> 1.0.9'
+    pod 'pop'
+    pod 'AFJSONRPCClient'
+    pod 'MJExtension'
+    pod 'MTDates'
+    pod 'Masonry', '~> 1.1.0'
+    pod 'IQKeyboardManager' ,'~> 6.0.6'
+end
