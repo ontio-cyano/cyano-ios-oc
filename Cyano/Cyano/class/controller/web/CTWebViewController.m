@@ -10,6 +10,7 @@
 //#import "WebViewJavascriptBridge.h"
 #import "RNJsWebView.h"
 #import "Helper.h"
+#import "ONTECKey.h"
 #import "ONTIdPreViewController.h"
 #import "ONTIdExportViewController.h"
 @interface CTWebViewController () <UIWebViewDelegate>
@@ -73,20 +74,29 @@
     // Login
     [self.webView setLoginCallback:^(NSDictionary *callbackDic) {
         NSLog(@"Login:%@", [callbackDic JSONString]);
-        NSDictionary *params = @{
-                                 @"action":@"login",
-                                 @"version":@"v1.0.0",
-                                 @"params":
-                                     @{
-                                         @"type":@"account",
-                                         @"user":[GCHRAM instance].defaultAccount.address,
-                                         @"dappName":callbackDic[@"params"][@"dappName"],
-                                         @"dappIcon":callbackDic[@"params"][@"dappIcon"],
-                                         @"message":callbackDic[@"params"][@"message"],
-                                         },
-                                 @"id":callbackDic[@"id"]
-                                 };
-        [weakSelf.webView sendMessageToWeb:params];
+        
+        ONTECKey *ecKey = [[ONTECKey alloc] initWithPriKey:[GCHApplication requestDefaultAccount].privateKey.data];
+        
+        NSDictionary *oriParams = callbackDic[@"params"];
+        NSString * message =  oriParams[@"message"];
+        NSData * messageData = [message dataUsingEncoding:NSUTF8StringEncoding];
+        NSString * signMessage = [[[GCHApplication  requestDefaultAccount] signMessage:messageData] lowercaseString];
+        
+        NSDictionary *result =@{@"type": @"account",
+                                @"publickey":[ecKey.publicKeyAsHex lowercaseString]   ,
+                                @"address": [GCHApplication requestDefaultAccount].address.address,
+                                @"message":message ,
+                                @"signature":signMessage,
+                                };
+        NSDictionary *nParams = @{@"action":@"login",
+                                  @"error": @0,
+                                  @"desc": @"SUCCESS",
+                                  @"result":result,
+                                  @"id":callbackDic[@"id"],
+                                  @"version":callbackDic[@"version"]
+                                  };
+        
+        [weakSelf.webView sendMessageToWeb:nParams];
     }];
     
     // GetAccount
