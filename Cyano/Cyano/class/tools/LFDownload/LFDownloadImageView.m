@@ -44,7 +44,7 @@
 {
     self.imageView = [[UIImageView alloc] init];
     self.imageView.frame = self.bounds;
-    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+//    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.backgroundColor = LightWhiteColor;
     self.imageView.image = [UIImage imageNamed:@"LFDEFAULT"];
     [self addSubview:self.imageView];

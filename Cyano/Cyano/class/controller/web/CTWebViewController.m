@@ -384,15 +384,35 @@
     
     NSDictionary *function = functions[0];
     NSArray *args = function[@"args"];
-    if (args.count != 4)
-    {
-        [CVShowLabelView showTitle:@"Params error." detail:nil];
-        return nil;
+    NSString *operation = function[@"operation"];
+    ONTTokenType tokenType;
+    NSString *toAddress;
+    NSString *amount;
+    if ([operation isEqualToString:@"transfer"]) {
+        if (args.count != 3)
+        {
+            [CVShowLabelView showTitle:@"Params error." detail:nil];
+            return nil;
+        }
+        tokenType = [invokeConfig[@"contractHash"] isEqualToString:@"0200000000000000000000000000000000000000"] ? ONTTokenTypeONG : ONTTokenTypeONT;
+        toAddress = [GCHString getDictionaryValue:args[1][@"value"]];
+        amount = [NSString stringWithFormat:@"%@", [GCHString getDictionaryValue:args[2][@"value"]]];
+        if (tokenType == ONTTokenTypeONG) {
+            amount = [Helper changeOEP4Str:amount Decimals:9];
+        }
+    }else{
+        if (args.count != 4)
+        {
+            [CVShowLabelView showTitle:@"Params error." detail:nil];
+            return nil;
+        }
+        tokenType = [(NSString *)(args[0][@"value"]) containsString:@"ong"] ? ONTTokenTypeONG : ONTTokenTypeONT;
+        toAddress = [GCHString getDictionaryValue:args[2][@"value"]];
+        amount = [NSString stringWithFormat:@"%@", args[3][@"value"]];
     }
     
-    ONTTokenType tokenType = [(NSString *)(args[0][@"value"]) containsString:@"ong"] ? ONTTokenTypeONG : ONTTokenTypeONT;
-    NSString *toAddress = [GCHString getDictionaryValue:args[2][@"value"]];
-    NSString *amount = [NSString stringWithFormat:@"%@", args[3][@"value"]];
+    
+    
     long gasPrice = [invokeConfig[@"gasPrice"] longValue];
     long gasLimit = [invokeConfig[@"gasLimit"] longValue];
     ONTAccount *account = [GCHApplication requestDefaultAccount];

@@ -132,7 +132,7 @@
       @{@"title" : @"Setting", @"image" : @"tab_me"},
       ];
     
-    float imageRadius = tabBarHeight * 0.45;
+    float imageRadius = (tabBarHeight - tabBarSafeHeight)* 0.45;
     float titleHeight = imageRadius * 0.6;
     float imageTitleSpacing = 5.0f;
     float itemWidth = self.view.frame.size.width / tabViewArray.count;
@@ -145,16 +145,16 @@
         UIButton *itemButton = [[UIButton alloc] init];
         itemButton.tag = f + 1;
         [itemButton addTarget:self action:@selector(toolBarItemButton:) forControlEvents:UIControlEventTouchUpInside];
-        itemButton.frame = CGRectMake(itemWidth * f, 0.0f, itemWidth, tabBarHeight);
+        itemButton.frame = CGRectMake(itemWidth * f, 0.0f, itemWidth, (tabBarHeight - tabBarSafeHeight));
         [self.tab_bar addSubview:itemButton];
         
         UIImageView *imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake((itemWidth - imageRadius) / 2, (tabBarHeight - imageRadius - titleHeight - imageTitleSpacing) / 2, imageRadius, imageRadius);
+        imageView.frame = CGRectMake((itemWidth - imageRadius) / 2, ((tabBarHeight - tabBarSafeHeight) - imageRadius - titleHeight - imageTitleSpacing) / 2, imageRadius, imageRadius);
         [itemButton addSubview:imageView];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         // Title
-        float labelY = (tabBarHeight - imageRadius - titleHeight - imageTitleSpacing) / 2 + imageRadius + imageTitleSpacing;
+        float labelY = ((tabBarHeight - tabBarSafeHeight) - imageRadius - titleHeight - imageTitleSpacing) / 2 + imageRadius + imageTitleSpacing;
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.frame = CGRectMake(0.0f, labelY, itemButton.frame.size.width, titleHeight);
         titleLabel.font = AppleFont_UltraLight(12);

@@ -22,7 +22,9 @@
 #define searchViewHeight 45.0f
 
 // TabBar高度
-#define tabBarHeight 50.0f
+#define tabBarHeight  (ONTOIsiPhoneX ?   83.0f : 50.0f )
+
+#define tabBarSafeHeight (ONTOIsiPhoneX ?   33.0f : 0.0f )
 
 // 工具栏高度
 #define toolDownViewHeight 48.0f
