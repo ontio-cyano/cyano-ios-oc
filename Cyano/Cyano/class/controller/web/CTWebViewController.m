@@ -84,7 +84,7 @@
         
         NSDictionary *result =@{@"type": @"account",
                                 @"publickey":[ecKey.publicKeyAsHex lowercaseString]   ,
-                                @"address": [GCHApplication requestDefaultAccount].address.address,
+                                @"user": [GCHApplication requestDefaultAccount].address.address,
                                 @"message":message ,
                                 @"signature":signMessage,
                                 };
