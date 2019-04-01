@@ -345,6 +345,19 @@ static ONTRpcApi *_instance = nil;
     }];
 }
 
-
-
+- (void)getOep4ListWithUrl:(NSString *)urlString callback:(void (^)(id result, NSError *error))callback{
+    
+    if (urlString && urlString.length > 0) {
+        AFJSONRPCClient *client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:urlString]];
+        [client invokeMethod:@"getOep4" withParameters:@[] requestId:@(3) success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"【ONTRpcApi getOep4】%@", responseObject);
+            callback(responseObject, nil);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"【ONTRpcApi getOep4】%@", error);
+            callback(0, error);
+        }];
+    } else {
+        callback(0, nil);
+    }
+}
 @end
