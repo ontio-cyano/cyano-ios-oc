@@ -169,6 +169,13 @@
     return [self encrypt:self.password];
 }
 
+- (NSString *)privateKeyHex {
+    return _privateKey.data.hexString;
+}
+
+- (NSString *)wif {
+    return _privateKey.toWif;
+}
 // 加密
 - (NSString *)encrypt:(NSString *)password {
     int n = 4096;

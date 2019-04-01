@@ -9,7 +9,10 @@
 #import "CTWebViewController.h"
 //#import "WebViewJavascriptBridge.h"
 #import "RNJsWebView.h"
-
+#import "Helper.h"
+#import "ONTECKey.h"
+#import "ONTIdPreViewController.h"
+#import "ONTIdExportViewController.h"
 @interface CTWebViewController () <UIWebViewDelegate>
 
 @property (strong, nonatomic) RNJsWebView *webView;
@@ -29,17 +32,13 @@
 {
     [super viewDidLoad];
     
+    
     [self setMainNavigationBar:NavigationBarType_None goBack:GoBackType_Back];
     [self initTitleViewWithText:self.controllerTitle];
     
     [self layoutMainView];
     
     [self initHandler];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
     
     if (![self.urlString containsString:@"http"])
     {
@@ -48,6 +47,14 @@
     
     NSLog(@"url:%@", self.urlString);
     [self.webView setURL:self.urlString];
+//    [self.webView setURL:[NSString stringWithFormat:@"https://auth.ont.io/#/mgmtHome?ontid=%@",[GCHRAM instance].defaultONTId.ontid]];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    
 }
 
 - (void)layoutMainView
@@ -67,20 +74,29 @@
     // Login
     [self.webView setLoginCallback:^(NSDictionary *callbackDic) {
         NSLog(@"Login:%@", [callbackDic JSONString]);
-        NSDictionary *params = @{
-                                 @"action":@"login",
-                                 @"version":@"v1.0.0",
-                                 @"params":
-                                     @{
-                                         @"type":@"account",
-                                         @"user":[GCHRAM instance].defaultAccount.address,
-                                         @"dappName":callbackDic[@"params"][@"dappName"],
-                                         @"dappIcon":callbackDic[@"params"][@"dappIcon"],
-                                         @"message":callbackDic[@"params"][@"message"],
-                                         },
-                                 @"id":callbackDic[@"id"]
-                                 };
-        [weakSelf.webView sendMessageToWeb:params];
+        
+        ONTECKey *ecKey = [[ONTECKey alloc] initWithPriKey:[GCHApplication requestDefaultAccount].privateKey.data];
+        
+        NSDictionary *oriParams = callbackDic[@"params"];
+        NSString * message =  oriParams[@"message"];
+        NSData * messageData = [message dataUsingEncoding:NSUTF8StringEncoding];
+        NSString * signMessage = [[[GCHApplication  requestDefaultAccount] signMessage:messageData] lowercaseString];
+        
+        NSDictionary *result =@{@"type": @"account",
+                                @"publickey":[ecKey.publicKeyAsHex lowercaseString]   ,
+                                @"user": [GCHApplication requestDefaultAccount].address.address,
+                                @"message":message ,
+                                @"signature":signMessage,
+                                };
+        NSDictionary *nParams = @{@"action":@"login",
+                                  @"error": @0,
+                                  @"desc": @"SUCCESS",
+                                  @"result":result,
+                                  @"id":callbackDic[@"id"],
+                                  @"version":callbackDic[@"version"]
+                                  };
+        
+        [weakSelf.webView sendMessageToWeb:nParams];
     }];
     
     // GetAccount
@@ -186,8 +202,175 @@
             }];
         }];
     }];
+    
+    // Authentication
+    [self.webView setAuthenticationCallback:^(NSDictionary *callbackDic) {
+        NSLog(@"Authentication:%@",callbackDic);
+        NSDictionary * params = callbackDic[@"params"];
+        NSString * subaction = params[@"subaction"];
+        NSArray * allSubaction = @[@"getRegistryOntidTx",@"submit",@"getIdentity"];
+        NSInteger index = [allSubaction indexOfObject:subaction];
+        switch (index) {
+            case 0:
+                [weakSelf getRegistryOntidTxRequest:callbackDic];
+                break;
+            case 1:
+                [weakSelf submitRequest:callbackDic];
+                break;
+            case 2:
+                [weakSelf getIdentityRequest:callbackDic];
+                break;
+            default:
+                break;
+        }
+    }];
+    
+    // Authorization
+    [self.webView setAuthorizationCallback:^(NSDictionary *callbackDic) {
+        NSLog(@"callbackDic:%@",callbackDic);
+        NSDictionary * params = callbackDic[@"params"];
+        NSString * subaction = params[@"subaction"];
+        NSArray * allSubaction = @[@"exportOntid",@"deleteOntid",@"decryptClaim",@"getAuthorizationInfo",@"requestAuthorization"];
+        NSInteger index = [allSubaction indexOfObject:subaction];
+        switch (index) {
+            case 0:
+                [weakSelf exportOntidRequest:callbackDic];
+                break;
+            case 1:
+                [weakSelf deleteOntidRequest:callbackDic];
+                break;
+            case 2:
+                [weakSelf decryptClaimRequest:callbackDic];
+                break;
+            case 3:
+                [weakSelf getAuthorizationInfoRequest:callbackDic];
+                break;
+            case 4:
+                [weakSelf requestAuthorizationRequest:callbackDic];
+                break;
+            default:
+                break;
+        }
+    }];
 }
 
+// getRegistryOntidTx
+-(void)getRegistryOntidTxRequest:(NSDictionary*)callbackDic{
+
+    ONTIdentity * ONtId = [GCHApplication requestDefaultONTId];
+    ONTAccount  * account = [GCHApplication requestDefaultAccount];
+    ONTTransaction * RegisterOntIdTx = [ONtId makeRegisterOntIdTxWithPayer:account gasPrice:500 gasLimit:20000];
+    NSString * registryOntidTx = RegisterOntIdTx.toRawByte.hexString;
+    NSLog(@"%@",registryOntidTx);
+    
+    NSDictionary *params = @{
+                             @"action":@"authentication",
+                             @"version":callbackDic[@"version"],
+                             @"result":
+                                 @{
+                                     @"subaction":@"getRegistryOntidTx",
+                                     @"ontid":ONtId.ontid,
+                                     @"registryOntidTx":registryOntidTx,
+                                     },
+                             @"id":callbackDic[@"id"],
+                             @"error":@0,
+                             @"desc":@"SUCCESS",
+                             };
+    [self.webView sendMessageToWeb:params];
+}
+
+// getIdentity
+-(void)getIdentityRequest:(NSDictionary*)callbackDic{
+    if ([GCHRAM instance].defaultONTId) {
+        NSDictionary *params = @{
+                                 @"action":@"authentication",
+                                 @"version":callbackDic[@"version"],
+                                 @"result":[GCHRAM instance].defaultONTId.ontid,
+                                 @"id":callbackDic[@"id"],
+                                 @"error":@0,
+                                 @"desc":@"SUCCESS",
+                                 };
+        [self.webView sendMessageToWeb:params];;
+    }else{
+        ONTIdPreViewController * vc = [[ONTIdPreViewController alloc]init];
+        [MainAppDelegate.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+// submit
+-(void)submitRequest:(NSDictionary*)callbackDic{
+    NSDictionary *params = @{
+                             @"action":@"authentication",
+                             @"version":callbackDic[@"version"],
+                             @"result":@1,
+                             @"id":callbackDic[@"id"],
+                             @"error":@0,
+                             @"desc":@"SUCCESS",
+                             };
+    [self.webView sendMessageToWeb:params];
+}
+
+// exportOntid
+-(void)exportOntidRequest:(NSDictionary*)callbackDic{
+    [GCHApplication inputPassword:^{
+        ONTIdExportViewController * vc = [[ONTIdExportViewController alloc]init];
+        vc.WIFString = [GCHRAM instance].defaultONTId.wif;
+        [MainAppDelegate.navigationController pushViewController:vc animated:YES];
+    }];
+}
+
+// deleteOntid
+-(void)deleteOntidRequest:(NSDictionary*)callbackDic{
+    [GCHApplication inputPassword:^{
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:DEFAULTONTID];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:ONTIDTX];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:DEFAULTACCOUTNKEYSTORE];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:DEFAULTIDENTITY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [GCHApplication clearDefaultONTId];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+}
+
+// decryptClaim
+-(void)decryptClaimRequest:(NSDictionary*)callbackDic{
+     [GCHApplication inputPassword:^{
+         
+     }];
+}
+
+// getAuthorizationInfo
+-(void)getAuthorizationInfoRequest:(NSDictionary*)callbackDic{
+    NSDictionary * resultDic = [[NSUserDefaults standardUserDefaults] valueForKey:ONTIDAUTHINFO];
+    NSDictionary * resultParams = resultDic[@"params"];
+    NSMutableDictionary * resultParamsChange = [NSMutableDictionary dictionaryWithDictionary:resultParams];
+    resultParamsChange[@"subaction"] = @"getAuthorizationInfo";
+    NSDictionary *params = @{
+                             @"action":@"authorization",
+                             @"version":callbackDic[@"version"],
+                             @"result":resultParamsChange,
+                             @"id":callbackDic[@"id"],
+                             @"error":@0,
+                             @"desc":@"SUCCESS",
+                             };
+    [self.webView sendMessageToWeb:params];
+}
+
+// requestAuthorization
+-(void)requestAuthorizationRequest:(NSDictionary*)callbackDic{
+    [[NSUserDefaults standardUserDefaults]setObject:callbackDic forKey:ONTIDAUTHINFO];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self.webView removeFromSuperview];
+    self.webView  = [[RNJsWebView alloc] initWithFrame:CGRectMake(0.0f, self.navBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.navBar.frame.size.height)];
+    [self.view addSubview:self.webView];
+    // Progress
+    [self layoutProgressView];
+    
+
+    [self.webView  setURL:@"https://auth.ont.io/#/authHome"];
+    [self initHandler];
+}
 // Invoke
 - (NSString *)invokeHex:(NSDictionary *)dic
 {
@@ -201,15 +384,35 @@
     
     NSDictionary *function = functions[0];
     NSArray *args = function[@"args"];
-    if (args.count != 4)
-    {
-        [CVShowLabelView showTitle:@"Params error." detail:nil];
-        return nil;
+    NSString *operation = function[@"operation"];
+    ONTTokenType tokenType;
+    NSString *toAddress;
+    NSString *amount;
+    if ([operation isEqualToString:@"transfer"]) {
+        if (args.count != 3)
+        {
+            [CVShowLabelView showTitle:@"Params error." detail:nil];
+            return nil;
+        }
+        tokenType = [invokeConfig[@"contractHash"] isEqualToString:@"0200000000000000000000000000000000000000"] ? ONTTokenTypeONG : ONTTokenTypeONT;
+        toAddress = [GCHString getDictionaryValue:args[1][@"value"]];
+        amount = [NSString stringWithFormat:@"%@", [GCHString getDictionaryValue:args[2][@"value"]]];
+        if (tokenType == ONTTokenTypeONG) {
+            amount = [Helper changeOEP4Str:amount Decimals:9];
+        }
+    }else{
+        if (args.count != 4)
+        {
+            [CVShowLabelView showTitle:@"Params error." detail:nil];
+            return nil;
+        }
+        tokenType = [(NSString *)(args[0][@"value"]) containsString:@"ong"] ? ONTTokenTypeONG : ONTTokenTypeONT;
+        toAddress = [GCHString getDictionaryValue:args[2][@"value"]];
+        amount = [NSString stringWithFormat:@"%@", args[3][@"value"]];
     }
     
-    ONTTokenType tokenType = [(NSString *)(args[0][@"value"]) containsString:@"ong"] ? ONTTokenTypeONG : ONTTokenTypeONT;
-    NSString *toAddress = [GCHString getDictionaryValue:args[2][@"value"]];
-    NSString *amount = [NSString stringWithFormat:@"%@", args[3][@"value"]];
+    
+    
     long gasPrice = [invokeConfig[@"gasPrice"] longValue];
     long gasLimit = [invokeConfig[@"gasLimit"] longValue];
     ONTAccount *account = [GCHApplication requestDefaultAccount];

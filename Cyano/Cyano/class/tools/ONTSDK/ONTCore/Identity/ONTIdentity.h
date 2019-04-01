@@ -22,6 +22,8 @@
 @property (nonatomic, readonly) NSString *ontid;
 @property (nonatomic, readonly) NSString *mnemonicText;
 @property (nonatomic, readonly) NSString *keystore;
+@property (nonatomic, readonly) NSString *wif;
+@property (nonatomic, readonly) NSString *privateKeyHex;
 @property (nonatomic, readonly) ONTPrivateKey *privateKey;
 @property (nonatomic, readonly) ONTPublicKey *publicKey;
 @property (nonatomic, readonly) ONTAddress *address;

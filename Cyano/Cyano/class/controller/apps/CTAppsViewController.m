@@ -9,7 +9,8 @@
 #import "CTAppsViewController.h"
 #import "MDApps.h"
 
-@interface CTAppsViewController () <UIScrollViewDelegate>
+@interface CTAppsViewController ()
+<UIScrollViewDelegate>
 
 @property (strong, nonatomic) MDApps *appsModel;
 

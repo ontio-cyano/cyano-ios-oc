@@ -107,4 +107,35 @@
     return account;
 }
 
+// 保存ONTID
++ (void)saveDefaultONTId:(ONTIdentity *)ONTId password:(NSString *)password{
+    MDAccount *model = [[MDAccount alloc] init];
+    model.name = ONTId.name;
+    model.mnemonicText = ONTId.mnemonicText;
+    model.privateKeyHex = ONTId.privateKeyHex;
+    model.wif = ONTId.wif;
+    model.keystore = ONTId.keystore;
+    model.password = password;
+    model.address = ONTId.address.address;
+    model.ontid = ONTId.ontid;
+    [GCHRAM instance].defaultONTId.password = password;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:model] forKey:DEFAULTONTID];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+// 删除ONTId账号
++ (void)clearDefaultONTId
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:DEFAULTONTID];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [GCHRAM instance].defaultONTId.password = nil;
+}
+
+// 请求获取默认ONTId
++ (ONTIdentity *)requestDefaultONTId{
+    NSString *privateKeyHex = [GCHRAM instance].defaultONTId.privateKeyHex;
+    NSString *password = [GCHRAM instance].defaultONTId.password;
+    ONTIdentity *ONTId = [[ONTIdentity alloc]initWithName:@"" password:password privateKeyHex:privateKeyHex];;
+    return ONTId;
+}
 @end

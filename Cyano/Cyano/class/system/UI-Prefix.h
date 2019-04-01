@@ -22,7 +22,9 @@
 #define searchViewHeight 45.0f
 
 // TabBar高度
-#define tabBarHeight 50.0f
+#define tabBarHeight  (ONTOIsiPhoneX ?   83.0f : 50.0f )
+
+#define tabBarSafeHeight (ONTOIsiPhoneX ?   33.0f : 0.0f )
 
 // 工具栏高度
 #define toolDownViewHeight 48.0f
@@ -136,6 +138,17 @@
 // 数字
 #define NumberFont(fontsize)[UIFont fontWithName:@"Noteworthy-Bold" size:fontsize]
 
+
+#define ONTOBundle_Name @"cyano.bundle"
+#define ONTOBundle_Path [[[NSBundle mainBundle]resourcePath] stringByAppendingPathComponent:ONTOBundle_Name]
+#define ONTOBundle      [NSBundle bundleWithPath:ONTOBundle_Path]
+
+#define ONTOHeight [UIScreen mainScreen].bounds.size.height
+#define ONTOWidth  [UIScreen mainScreen].bounds.size.width
+
+#define ONTOIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+#define ONTOIsiPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define ONTOIsiPhone6 (ONTOHeight == 667.0)
 
 #define ONG_PRECISION_STR @"1000000000"
 #define NEP5_PRECISION_STR @"100000000"

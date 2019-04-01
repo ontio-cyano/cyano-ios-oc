@@ -13,6 +13,7 @@
 #import "MDOep4Model.h"
 #import "TokensCell.h"
 #import "OEP4ViewController.h"
+#import "Helper.h"
 #define headerHeight getUIValue(200.0f)
 #define toolHeight getUIValue(60.0f)
 
@@ -30,6 +31,8 @@
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) MDOep4Model *oep4Model;
+
+@property (copy,   nonatomic) NSString *claimOngString;
 @end
 
 @implementation CVWalletBalancesView
@@ -53,6 +56,9 @@
     
     // oep4 data
     [self getOep4data];
+    
+    // UnboundOng
+    [self getUnboundOng];
 }
 
 #pragma mark - Data
@@ -75,7 +81,7 @@
             }
             else if ([[balance.name uppercaseString] isEqualToString:@"CLAIM"])
             {
-                self.claimValueLabel.text = balance.balances;
+//                self.claimValueLabel.text = balance.balances;
             }
         }
     }];
@@ -100,6 +106,18 @@
 }
 #pragma mark - Header
 
+#pragma mark - getUnboundOng
+-(void)getUnboundOng{
+    ONTAccount *account = [GCHApplication requestDefaultAccount];
+    [[ONTRpcApi shareInstance] getUnboundOng:account.address.address callback:^(NSString *amount, NSError *error) {
+        if (error) {
+            return ;
+        }
+        NSLog(@"amount=%@",amount);
+        self.claimOngString = [ONTUtils decimalNumber:amount byDividingBy:@"1000000000.0"];
+        self.claimValueLabel.text = [NSString stringWithFormat:@"%@ (Claim)",[ONTUtils decimalNumber:amount byDividingBy:@"1000000000.0"]];
+    }];
+}
 - (void)layoutHeaderView
 {
     if (!self.headerView)
@@ -172,6 +190,11 @@
         else if (f == 4)
         {
             self.claimValueLabel = label;
+            self.claimValueLabel.font = [UIFont systemFontOfSize:14];
+            self.claimValueLabel.userInteractionEnabled = YES;
+            UITapGestureRecognizer
+            *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(claimOng)];
+            [self.claimValueLabel addGestureRecognizer:tapGesture];
             label.text = @"0 (Claim)";
             label.frame = CGRectMake(labelWidth, labelsTop + labelHeight * 2, labelWidth, labelHeight);
         }
@@ -296,6 +319,31 @@
     }
 }
 
+#pragma mark - claimOng
+-(void)claimOng{
+    NSString * fee = [Helper getRealFee:@"500" GasLimit:@"20000"];
+    BOOL isEnough = [Helper isEnoughOng:self.ongValueLabel.text fee:fee];
+    if (isEnough) {
+        [GCHApplication inputPassword:^{
+            [self claimOngTrade];
+        }];
+        
+    }else{
+        [CVShowLabelView showTitle:@"Not enough ONG to make the transaction." detail:nil];
+    }
+}
+-(void)claimOngTrade{
+    ONTAccount *account = [GCHApplication requestDefaultAccount];;
+    NSString *txHex = [account makeClaimOngTxWithAddress:account.address.address amount:self.claimOngString gasPrice:500 gasLimit:20000];
+    
+    [[ONTRpcApi shareInstance] sendRawtransactionWithHexTx:txHex preExec:NO callback:^(NSString *txHash, NSError *error) {
+        if (error) {
+            [CVShowLabelView showTitle:@"error" detail:nil];
+        } else {
+            [self getUnboundOng];
+        }
+    }];
+}
 #pragma mark OEP4
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.oep4Model.ContractList.count;

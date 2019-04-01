@@ -18,5 +18,6 @@
 @property (nonatomic, strong) NSString *keystore;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString *ontid;
 
 @end

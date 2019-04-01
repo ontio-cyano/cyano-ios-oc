@@ -189,12 +189,14 @@
                                queryCallback:^(id result, NSError *error) {
                                    if (error) {
                                        NSLog(@"error == %@", error);
+                                       [CVShowLabelView showTitle:@"error" detail:nil];
                                    } else {
                                        if (isPreExec) {
                                            NSLog(@"result == %@", result);
                                        } else {
                                            NSString *txhash = (NSString *)result;
                                            NSLog(@"txhash == %@", txhash);
+                                           [CVShowLabelView showTitle:@"The transaction has been issued." detail:nil];
                                        }
                                    }
                                }];

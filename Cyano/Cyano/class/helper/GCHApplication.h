@@ -34,4 +34,12 @@
 // 请求获取默认账号
 + (ONTAccount *)requestDefaultAccount;
 
+// 保存ONTID
++ (void)saveDefaultONTId:(ONTIdentity *)ONTId password:(NSString *)password;
+
+// 删除ONTId账号
++ (void)clearDefaultONTId;
+
+// 请求获取默认ONTId
++ (ONTIdentity *)requestDefaultONTId;
 @end

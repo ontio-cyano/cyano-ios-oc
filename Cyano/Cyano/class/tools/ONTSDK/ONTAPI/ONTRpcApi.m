@@ -345,7 +345,6 @@ static ONTRpcApi *_instance = nil;
     }];
 }
 
-
 - (void)getOep4ListWithUrl:(NSString *)urlString callback:(void (^)(id result, NSError *error))callback{
     
     if (urlString && urlString.length > 0) {

@@ -9,7 +9,9 @@
 #import "CTScanViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "CVScanMaskView.h"
-
+#import "Helper.h"
+#import "CTLoginViewController.h"
+#import "CTPayViewController.h"
 @interface CTScanViewController () <AVCaptureMetadataOutputObjectsDelegate>
 
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
@@ -205,7 +207,28 @@
     
     [self.captureSession stopRunning];
     
-    [CVShowLabelView showTitle:code detail:nil];
+    if ([GCHRAM instance].defaultAccount.password){
+        ONTAccount *account = [GCHApplication requestDefaultAccount];
+        NSDictionary * dic = [Helper dictionaryWithJsonString:code];
+        if ([dic isKindOfClass:[NSDictionary class]] && dic[@"action"]) {
+            if ([dic[@"action"] isEqualToString:@"login"]) {
+                CTLoginViewController * controller = [[CTLoginViewController alloc]init];
+                controller.loginInfo = dic;
+                controller.account = account;
+                [MainAppDelegate.navigationController pushViewController:controller animated:YES];
+                return;
+            }else if ([dic[@"action"] isEqualToString:@"invoke"]) {
+                CTPayViewController * controller = [[CTPayViewController alloc]init];
+                controller.payInfo = dic;
+                controller.account = account;
+                [MainAppDelegate.navigationController pushViewController:controller animated:YES];
+                return;
+            }
+        }
+    }else{
+        
+    }
+//    [CVShowLabelView showTitle:code detail:nil];
 }
 
 @end
