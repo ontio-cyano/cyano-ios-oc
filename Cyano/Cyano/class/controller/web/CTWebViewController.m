@@ -123,30 +123,57 @@
     // Invoke
     [self.webView setInvokeTransactionCallback:^(NSDictionary *callbackDic) {
         NSLog(@"Invoke:%@", [callbackDic JSONString]);
-        [GCHApplication inputPassword:^{
-            
-            NSDictionary * tradeDic = [weakSelf checkPayer:callbackDic];
-            if (tradeDic == nil) {
-                [weakSelf emptyInfo:@"no wallet" resultDic:callbackDic];
+        
+        NSDictionary *invokeConfig = callbackDic[@"params"][@"invokeConfig"];
+        NSArray *functions = invokeConfig[@"functions"];
+        if (functions.count <= 0)
+        {
+            [CVShowLabelView showTitle:@"Params error." detail:nil];
+            return ;
+        }
+
+        NSDictionary *function = functions[0];
+        NSString *operation = function[@"operation"];
+        if ([operation isEqualToString:@"transfer"]) {
+            NSString *txHex = [weakSelf invokeHex:callbackDic];
+            if (!txHex) {
                 return;
             }
-            ONTTransaction * tx = [ONTTransaction makeDappInvokeTransactionWithDic:tradeDic];
-            ONTAccount *account = [GCHApplication requestDefaultAccount];
-            [tx addSign:account];
-            NSString *txHex = tx.toRawByte.hexString;
-            if (!txHex) return;
-            [[ONTRpcApi shareInstance] dappSendRawtransactionWithHexTx:txHex preExec:YES callback:^(ONTTransactionNotifyInfo *notifyInfo, id responseObject, NSError *error) {
-                if (error)
-                {
-                    NSLog(@"error == %@", error);
-                    [CVShowLabelView showTitle:@"Invoke failed." detail:nil];
-                }
-                else
-                {
-                    [weakSelf sendRawtransactionWithHexTx:txHex callbackDic:callbackDic];
+            [[ONTRpcApi shareInstance] sendRawtransactionWithHexTx:txHex preExec:NO callback:^(NSString *txHash, NSError *error) {
+                if (error) {
+                    [CVShowLabelView showTitle:@"error" detail:nil];
+                } else {
+                    [CVShowLabelView showTitle:@"The transaction has been issued." detail:nil];
                 }
             }];
-        }];
+            return;
+        }else{
+            
+            [GCHApplication inputPassword:^{
+                
+                NSDictionary * tradeDic = [weakSelf checkPayer:callbackDic];
+                if (tradeDic == nil) {
+                    [weakSelf emptyInfo:@"no wallet" resultDic:callbackDic];
+                    return;
+                }
+                ONTTransaction * tx = [ONTTransaction makeDappInvokeTransactionWithDic:tradeDic];
+                ONTAccount *account = [GCHApplication requestDefaultAccount];
+                [tx addSign:account];
+                NSString *txHex = tx.toRawByte.hexString;
+                if (!txHex) return;
+                [[ONTRpcApi shareInstance] dappSendRawtransactionWithHexTx:txHex preExec:YES callback:^(ONTTransactionNotifyInfo *notifyInfo, id responseObject, NSError *error) {
+                    if (error)
+                    {
+                        NSLog(@"error == %@", error);
+                        [CVShowLabelView showTitle:@"Invoke failed." detail:nil];
+                    }
+                    else
+                    {
+                        [weakSelf sendRawtransactionWithHexTx:txHex callbackDic:callbackDic];
+                    }
+                }];
+            }];
+        }
     }];
     
     // InvokeRead
