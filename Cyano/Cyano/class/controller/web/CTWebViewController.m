@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) RNJsWebView *webView;
 @property (strong, nonatomic) UIProgressView *progressView;
+@property(nonatomic, assign) BOOL isFirst;
 
 @end
 
@@ -50,6 +51,12 @@
 //    [self.webView setURL:[NSString stringWithFormat:@"https://auth.ont.io/#/mgmtHome?ontid=%@",[GCHRAM instance].defaultONTId.ontid]];
 }
 
+// 清除交易记录
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:INVOKEPASSWORDFREE];
+
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -117,9 +124,18 @@
     [self.webView setInvokeTransactionCallback:^(NSDictionary *callbackDic) {
         NSLog(@"Invoke:%@", [callbackDic JSONString]);
         [GCHApplication inputPassword:^{
-            NSString *txHex = [weakSelf invokeHex:callbackDic];
+            
+            NSDictionary * tradeDic = [weakSelf checkPayer:callbackDic];
+            if (tradeDic == nil) {
+                [weakSelf emptyInfo:@"no wallet" resultDic:callbackDic];
+                return;
+            }
+            ONTTransaction * tx = [ONTTransaction makeDappInvokeTransactionWithDic:tradeDic];
+            ONTAccount *account = [GCHApplication requestDefaultAccount];
+            [tx addSign:account];
+            NSString *txHex = tx.toRawByte.hexString;
             if (!txHex) return;
-            [[ONTRpcApi shareInstance] sendRawtransactionWithHexTx:txHex preExec:NO callback:^(NSString *txHash, NSError *error) {
+            [[ONTRpcApi shareInstance] dappSendRawtransactionWithHexTx:txHex preExec:YES callback:^(ONTTransactionNotifyInfo *notifyInfo, id responseObject, NSError *error) {
                 if (error)
                 {
                     NSLog(@"error == %@", error);
@@ -127,17 +143,7 @@
                 }
                 else
                 {
-                    NSLog(@"txHash == %@", txHash);
-                    NSLog(@"View on explorer：%@", kONTScanTxURL(txHash));
-                    NSDictionary *params = @{
-                                             @"action":@"invoke",
-                                             @"version": @"v1.0.0",
-                                             @"error": @(0),
-                                             @"desc": @"SUCCESS",
-                                             @"result":txHash,
-                                             @"id":callbackDic[@"id"]
-                                             };
-                    [weakSelf.webView sendMessageToWeb:params];
+                    [weakSelf sendRawtransactionWithHexTx:txHex callbackDic:callbackDic];
                 }
             }];
         }];
@@ -146,61 +152,76 @@
     // InvokeRead
     [self.webView setInvokeReadCallback:^(NSDictionary *callbackDic) {
         NSLog(@"InvokeRead:%@", [callbackDic JSONString]);
-        [GCHApplication inputPassword:^{
-            ONTAccount *account = [GCHApplication requestDefaultAccount];
-            [[NeoVM shareInstance].oep4 sendInit:account
-                                      byGasPayer:account
-                                     useGasLimit:0//10000000
-                                     useGasPrice:0//500
-                                         preExec:YES
-                                   queryCallback:^(id result, NSError *error) {
-                                       if (error) {
-                                           NSLog(@"error == %@", error);
-                                           [CVShowLabelView showTitle:@"Invoke read failed." detail:nil];
-                                       } else {
-                                           NSLog(@"result == %@", result);
-                                           NSDictionary *params = @{
-                                                                    @"action":@"invokeRead",
-                                                                    @"version": @"v1.0.0",
-                                                                    @"error": @(0),
-                                                                    @"desc": @"SUCCESS",
-                                                                    @"result":result,
-                                                                    @"id":callbackDic[@"id"]
-                                                                    };
-                                           [weakSelf.webView sendMessageToWeb:params];
-                                       }
-                                   }];
+        NSDictionary * tradeDic = [weakSelf checkPayer:callbackDic];
+        if (tradeDic == nil) {
+            [weakSelf emptyInfo:@"no wallet" resultDic:callbackDic];
+            return;
+        }
+        ONTTransaction * tx = [ONTTransaction makeDappInvokeTransactionWithDic:tradeDic];
+        ONTAccount *account = [GCHApplication requestDefaultAccount];
+        [tx addSign:account];
+        NSString *txHex = tx.toRawByte.hexString;
+        if (!txHex) return;
+        [[ONTRpcApi shareInstance] dappSendRawtransactionWithHexTx:txHex preExec:YES callback:^(ONTTransactionNotifyInfo *notifyInfo, id responseObject, NSError *error) {
+            if (error) {
+                [CVShowLabelView showTitle:@"InvokeRead failed." detail:nil];
+            }else{
+                NSDictionary *params = @{
+                                         @"action":@"invokeRead",
+                                         @"version": @"v1.0.0",
+                                         @"error": @(0),
+                                         @"desc": @"SUCCESS",
+                                         @"result":responseObject,
+                                         @"id":callbackDic[@"id"]
+                                         };
+                [weakSelf.webView sendMessageToWeb:params];
+            }
         }];
+
     }];
     
     // InvokePasswordFree
     [self.webView setInvokePasswordFreeCallback:^(NSDictionary *callbackDic) {
         NSLog(@"InvokePasswordFree:%@", [callbackDic JSONString]);
-        [GCHApplication inputPassword:^{
-            NSString *txHex = [weakSelf invokeHex:callbackDic];
-            if (!txHex) return;
-            [[ONTRpcApi shareInstance] sendRawtransactionWithHexTx:txHex preExec:NO callback:^(NSString *txHash, NSError *error) {
-                if (error)
-                {
-                    NSLog(@"error == %@", error);
-                    [CVShowLabelView showTitle:@"Invoke failed." detail:nil];
+        
+        NSArray *allArray = [[NSUserDefaults standardUserDefaults] valueForKey:INVOKEPASSWORDFREE];
+        NSDictionary * params = callbackDic[@"params"];
+        NSString *jsonString ;
+        if (params.count >0) {
+            jsonString = [Helper dictionaryToJson:params];
+        }
+        if (allArray) {
+            weakSelf.isFirst = YES;
+            for (NSString * paramsStr in allArray) {
+                if ([jsonString isEqualToString:paramsStr]) {
+                    weakSelf.isFirst = NO;
                 }
-                else
-                {
-                    NSLog(@"txHash == %@", txHash);
-                    NSLog(@"View on explorer：%@", kONTScanTxURL(txHash));
-                    NSDictionary *params = @{
-                                             @"action":@"invokePasswordFree",
-                                             @"version": @"v1.0.0",
-                                             @"error": @(0),
-                                             @"desc": @"SUCCESS",
-                                             @"result":txHash,
-                                             @"id":callbackDic[@"id"]
-                                             };
-                    [weakSelf.webView sendMessageToWeb:params];
-                }
+            }
+            
+        }else{
+            weakSelf.isFirst = YES;
+        }
+        
+        NSDictionary * tradeDic = [weakSelf checkPayer:callbackDic];
+        if (tradeDic == nil) {
+            [weakSelf emptyInfo:@"no wallet" resultDic:callbackDic];
+            return;
+        }
+        ONTTransaction * tx = [ONTTransaction makeDappInvokeTransactionWithDic:tradeDic];
+        ONTAccount *account = [GCHApplication requestDefaultAccount];
+        [tx addSign:account];
+        NSString *txHex = tx.toRawByte.hexString;
+        if (!txHex) return;
+        
+        if (weakSelf.isFirst) {
+            [GCHApplication inputPassword:^{
+                [weakSelf sendRawtransactionWithHexTx:txHex callbackDic:callbackDic];
+                
             }];
-        }];
+        }else{
+            
+            [weakSelf sendRawtransactionWithHexTx:txHex callbackDic:callbackDic];
+        }
     }];
     
     // Authentication
@@ -252,6 +273,153 @@
                 break;
         }
     }];
+}
+
+// 预执行交易
+-(void)preExecsendRawtransactionWithHexTx:(NSString *)txHex callbackDic:(NSDictionary *)callbackDic {
+    __weak typeof(self) weakSelf = self;
+    [[ONTRpcApi shareInstance] dappSendRawtransactionWithHexTx:txHex preExec:YES callback:^(ONTTransactionNotifyInfo *notifyInfo, id responseObject, NSError *error) {
+        if (error)
+        {
+            NSLog(@"error == %@", error);
+            [CVShowLabelView showTitle:@"failed." detail:nil];
+        }
+        else
+        {
+            [weakSelf sendRawtransactionWithHexTx:txHex callbackDic:callbackDic];
+        }
+    }];
+}
+// 发送交易
+-(void)sendRawtransactionWithHexTx:(NSString *)txHex callbackDic:(NSDictionary *)callbackDic {
+    __weak typeof(self) weakSelf = self;
+    [[ONTRpcApi shareInstance] dappSendRawtransactionWithHexTx:txHex preExec:NO callback:^(ONTTransactionNotifyInfo *notifyInfo, id responseObject, NSError *error) {
+        if (error)
+        {
+            NSLog(@"error == %@", error);
+            [CVShowLabelView showTitle:@"failed." detail:nil];
+        }
+        else
+        {
+            if ([callbackDic[@"action"] isEqualToString:@"invoke"]) {
+                NSDictionary *params = @{
+                                         @"action":@"invoke",
+                                         @"version": @"v1.0.0",
+                                         @"error": @(0),
+                                         @"desc": @"SUCCESS",
+                                         @"result":responseObject,
+                                         @"id":callbackDic[@"id"]
+                                         };
+                [weakSelf.webView sendMessageToWeb:params];
+            }else if ([callbackDic[@"action"] isEqualToString:@"invokePasswordFree"]){
+                NSDictionary *params = @{@"action":@"invokePasswordFree",
+                                         @"version": @"v1.0.0",
+                                         @"error": @0,
+                                         @"desc": @"SUCCESS",
+                                         @"result":responseObject,
+                                         @"id":callbackDic[@"id"]
+                                        };
+                [weakSelf.webView sendMessageToWeb:params];
+                if (weakSelf.isFirst) {
+                    [weakSelf toSaveInvokePasswordFreeInfo:callbackDic];
+                    
+                }
+                
+            }
+        }
+    }];
+}
+
+-(void)toSaveInvokePasswordFreeInfo:(NSDictionary*)callbackDic {
+    self.isFirst = NO;
+    NSDictionary * params = callbackDic[@"params"];
+    NSString *jsonString = [Helper dictionaryToJson:params];
+    NSArray *allArray = [[NSUserDefaults standardUserDefaults] valueForKey:INVOKEPASSWORDFREE];
+    NSMutableArray *newArray;
+    if (allArray) {
+        newArray = [[NSMutableArray alloc] initWithArray:allArray];
+        BOOL isHave = NO;
+        for (NSString * str  in newArray) {
+            if ([str isEqualToString:jsonString]) {
+                isHave = YES;
+            }
+        }
+        if (isHave == NO) {
+            [newArray addObject:jsonString];
+        }
+    } else {
+        newArray = [[NSMutableArray alloc] init];
+        [newArray addObject:jsonString];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:newArray forKey:INVOKEPASSWORDFREE];
+}
+// Check transaction payer
+-(NSDictionary*)checkPayer:(NSDictionary*)dic{
+    NSMutableDictionary * resultParamsChange = [NSMutableDictionary dictionaryWithDictionary:dic];
+    NSMutableDictionary * paramsD = [NSMutableDictionary dictionaryWithDictionary:resultParamsChange[@"params"]] ;
+    NSMutableDictionary * invokeConfig = [NSMutableDictionary dictionaryWithDictionary:paramsD[@"invokeConfig"]] ;
+    if (!invokeConfig[@"payer"]) {
+        [invokeConfig setValue:[GCHRAM instance].defaultAccount.address forKey:@"payer"];
+        paramsD[@"invokeConfig"] = invokeConfig;
+        resultParamsChange[@"params"] = paramsD;
+        return resultParamsChange;
+    }
+    if ([Helper isBlankString:invokeConfig[@"payer"]]) {
+        [invokeConfig setValue:[GCHRAM instance].defaultAccount.address forKey:@"payer"];
+        paramsD[@"invokeConfig"] = invokeConfig;
+        resultParamsChange[@"params"] = paramsD;
+        return resultParamsChange;
+    }
+    if (![[GCHRAM instance].defaultAccount.address isEqualToString:invokeConfig[@"payer"]]) {
+        [CVShowLabelView showTitle:@"There is no corresponding payment wallet, please add the wallet first." detail:nil];
+        return nil;
+    }
+    return dic;
+    
+}
+
+// send emptuInfo to web
+-(void)emptyInfo:(NSString*)emptyString resultDic:(NSDictionary*)dic{
+    NSString * idStr = @"";
+    if (dic[@"id"]) {
+        idStr = dic[@"id"];
+    }
+    NSString * versionStr = @"";
+    if (dic[@"version"]) {
+        versionStr = dic[@"version"];
+    }
+    NSDictionary *nParams = @{@"action":dic[@"action"],
+                              @"error": emptyString,
+                              @"desc": @"ERROR",
+                              @"result":@"",
+                              @"id":idStr,
+                              @"version":versionStr
+                              };
+    
+    
+    [_webView sendMessageToWeb:nParams];
+}
+// Error message upload
+-(void)errorSend:(NSDictionary*)dic{
+//    NSString * idStr = @"";
+//    if (self.promptDic[@"id"]) {
+//        idStr = self.promptDic[@"id"];
+//    }
+//    NSString * versionStr = @"";
+//    if (self.promptDic[@"version"]) {
+//        versionStr = self.promptDic[@"version"];
+//    }
+//    NSDictionary *nParams = @{@"action":self.promptDic[@"action"],
+//                              @"error": dic[@"error"],
+//                              @"desc": @"ERROR",
+//                              @"result":dic[@"result"],
+//                              @"id":idStr,
+//                              @"version":versionStr
+//                              };
+//
+//
+//   [_webView sendMessageToWeb:nParams];
 }
 
 // getRegistryOntidTx
