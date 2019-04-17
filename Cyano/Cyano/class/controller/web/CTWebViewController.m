@@ -135,18 +135,20 @@
         NSDictionary *function = functions[0];
         NSString *operation = function[@"operation"];
         if ([operation isEqualToString:@"transfer"]) {
-            NSString *txHex = [weakSelf invokeHex:callbackDic];
-            if (!txHex) {
-                return;
-            }
-            [[ONTRpcApi shareInstance] sendRawtransactionWithHexTx:txHex preExec:NO callback:^(NSString *txHash, NSError *error) {
-                if (error) {
-                    [CVShowLabelView showTitle:@"error" detail:nil];
-                } else {
-                    [CVShowLabelView showTitle:@"The transaction has been issued." detail:nil];
+             [GCHApplication inputPassword:^{
+                NSString *txHex = [weakSelf invokeHex:callbackDic];
+                if (!txHex) {
+                    return;
                 }
-            }];
-            return;
+                [[ONTRpcApi shareInstance] sendRawtransactionWithHexTx:txHex preExec:NO callback:^(NSString *txHash, NSError *error) {
+                    if (error) {
+                        [CVShowLabelView showTitle:@"error" detail:nil];
+                    } else {
+                        [CVShowLabelView showTitle:@"The transaction has been issued." detail:nil];
+                    }
+                }];
+                return;
+             }];
         }else{
             
             [GCHApplication inputPassword:^{
