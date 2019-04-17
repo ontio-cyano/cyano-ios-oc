@@ -86,6 +86,8 @@
 #define DEFAULTIDENTITY @"DEFAULTIDENTITY"
 #define ONTIDAUTHINFO @"ONTIDAUTHINFO"
 
+#define INVOKEPASSWORDFREE @"INVOKEPASSWORDFREE"
+
 
 #ifdef DEBUG
 #define NSLog(format, ...)    NSLog(format, ##__VA_ARGS__)
